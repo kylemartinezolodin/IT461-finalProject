@@ -1,0 +1,10 @@
+@host = http://127.0.0.1:6000/v1/users
+
+
+### Create new cats
+POST {{host}} HTTP/1.1
+Content-Type: application/json
+{
+    "name": "qwe"
+    
+}
