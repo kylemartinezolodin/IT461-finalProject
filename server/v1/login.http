@@ -1,0 +1,26 @@
+@host = http://127.0.0.1:8080/v1
+
+
+
+### Login
+POST {{host}}/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+### Login 2
+POST {{host}}/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "mini",
+  "password": "awww"
+}
+
+
+### Token verification
+GET {{host}}/verify-token?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOjEsImV4cCI6MTY1Mjk3ODgxOX0.zRSrQ28dT5faD7feJbqSJATvY5z8YdC_QoN0n9UhY0U HTTP/1.1
+

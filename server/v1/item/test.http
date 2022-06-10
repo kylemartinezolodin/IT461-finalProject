@@ -1,0 +1,89 @@
+@host = http://127.0.0.1:8080/v1/items
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOjEsImV4cCI6MTY1NDk0MjIzMX0.qh-ngndQQKwFiRGstwey3TGci-VwN9ancvnMlGXq0LU
+####
+GET http://127.0.0.1:8080/v1/login HTTP/1.1
+
+### POST
+POST http://127.0.0.1:8080/v1/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+### Get all items
+GET {{host}}/?token={{token}} HTTP/1.1
+
+
+### Create new items
+POST {{host}}/?token={{token}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": 0,
+    "name": "Shampoo",
+    "quantity": 90,
+    "price": 15.50
+}
+
+
+### Create new items
+POST {{host}}/?token={{token}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": 0,
+    "name": "Soap",
+    "quantity": 15,
+    "price": 10.50
+}
+
+### Create new items
+POST {{host}}/?token={{token}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": 0,
+    "name": "Pen",
+    "quantity": 30,
+    "price": 8.50
+}
+
+
+### Update items
+PUT {{host}}/?token={{token}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": 2,
+    "name": "Toothpaste",
+    "quantity": 5,
+    "price": 9.5
+}
+
+
+### Delete items
+DELETE {{host}}/?token={{token}} HTTP/1.1
+Content-Type: application/json
+
+[2, 1]
+
+
+
+### Get single item
+GET {{host}}/3?token={{token}} HTTP/1.1
+
+
+### Update sing item
+PUT {{host}}/3?token={{token}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "id": 3, 
+  "name": "Whitie"
+}
+
+
+### Delete single item
+DELETE {{host}}/10?token={{token}} HTTP/1.1

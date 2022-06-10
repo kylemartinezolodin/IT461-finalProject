@@ -6,7 +6,7 @@
 git clone https://github.com/kylemartinezolodin/IT461-finalProject.git
 cd "IT461-finalProject"
 python -m venv venv
-venv/scritps/activate
+venv\scritps\activate
 pip install -r requirements.txt
 ```
 
