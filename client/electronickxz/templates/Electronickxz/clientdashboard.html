@@ -1,6 +1,6 @@
 {% load static %}
 {% block headerinclude %}
-<title>Melody</title>
+<title>Electronickxz</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -76,7 +76,11 @@ thead{
                 <img src="{% static 'melody/img/default-avatar.png' %}" class="circle">
                 {% endif %}
             </div>
-            <center><p style="color: #D1D1D1;; margin-top: 5%; margin-bottom: 10%;">Welcome, {{user.firstname}}!!!</p></center>
+            {%if user is not null%}
+            <center><p style="color: #D1D1D1;; margin-top: 5%; margin-bottom: 10%;">Welcome, {{user.username}}!!!</p></center>
+            {%else%}
+            <center><p style="color: #D1D1D1;; margin-top: 5%; margin-bottom: 10%;">Welcome, Guest!!!</p></center>
+            {%endif%}
                 <ul class="list-group">
                     <li class="list-group-item sidebar-separated-title d-flex">
                         <small style="color: #D1D1D1;">MAIN MENU</small>
@@ -90,12 +94,16 @@ thead{
                     <div class="dropdown-container">
                         <a href="#" class="bg-dark list-group-item list-group-item-action flex-column"><span class="ml-5 mr-2"><i style='font-size:24px' class='fab'>&#xf1be;</i></span>Product</a>
                     </div>
+                    {%if user is not null%}
                     <a href="#" class="bg-dark list-group-item list-group-item-action flex-column" style="font-size: 1.1rem;">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span class="ml-3 mr-3"><i class="material-icons">&#xe853;</i></span>Profile
                         </div>
                     </a>
+                    {%endif%}
+                   
                 </ul>
+                {%if user is not null%}
                 <ul class="list-group" style="margin-top: 25%;">
                     <a href="{% url 'electronickxz:login_view' %}" class="bg-dark list-group-item list-group-item-action flex-column" style="font-size: 1.1rem; border: none; color: #D1D1D1;">
                         <div class="d-flex w-100 justify-content-start align-items-center">
@@ -103,6 +111,15 @@ thead{
                         </div>
                     </a>
                 </ul>
+                {%else%}
+                <ul class="list-group" style="margin-top: 25%;">
+                    <a href="{% url 'electronickxz:login_view' %}" class="bg-dark list-group-item list-group-item-action flex-column" style="font-size: 1.1rem; border: none; color: #D1D1D1;">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="ml-5 mr-2"><i class="material-icons">&#xe879;</i></span>Log In
+                        </div>
+                    </a>
+                </ul>
+                {%endif%}
             </div>
 
         <!-- start of content -->
@@ -110,7 +127,7 @@ thead{
             <header>
                 <div class="row" style="margin-top: 1%; margin-bottom: 2%;">
                     <div class="logo-container"><img src="{% static 'melody/img/logo.png' %}" class="logo"></div>
-                    <div class="col" style="margin-top: 1%; margin-right: -40%;"><h4>MELODY</h4></div>
+                    <div class="col" style="margin-top: 1%; margin-right: -40%;"><h4>Electronickxz</h4></div>
                     <div class="col" style="margin-top: 2%;"><h3>PRODUCT DASHBOARD</h3></div>
                 </div>       
             </header>
@@ -125,28 +142,27 @@ thead{
                  
             </form>
             </p>
-            <p align="right">
+            <!-- <p align="right">
                 <a type="button" class="btn-Add" href="{% url 'electronickxz:productRegister_view' %}"><i class="material-icons" style="font-size: 18px;">&#xe148;</i><span class="txt">Add Song</span></a> 
-            </p>
+            </p> -->
             <table class="table table-hover shadow" id="data-table">
                 <thead>
                     <tr>
-                        <th scope="col">Song Title</th>
-                        <th scope="col">Genre(s)</th>
-                        <th scope="col">Artist(s)</th>
-                        <th scope="col">Date Registered</th> 
-                        <th scope="col">Action</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Price</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for song in songs %}
                     <tr>
-                        <th scope="row">{{song.songtitle}}</th>
-                        <td class="center-txt">{{song.genre}}</td>
-                        <td class="center-txt">{{song.artist}}</td>
-                        <td class="center-txt">{{song.dateRelease}}</td>
-                        <td class="center-txt"><a data-toggle="modal" href="#" class="button" data-target="#modalView-{{song.id}}"><i class="material-icons" style="color: black; font-size: 26px;">&#xe88f;</i></a>
-                            <a data-toggle="modal" href="#" class="button" data-target="#modalDelete-{{song.id}}"><i class="material-icons" style="color: red; font-size:28px;">&#xe92b;</i></a>
+                        {%for item in data%}
+                        <th scope="row">{{item.id}}</th>
+                        <td class="center-txt">{{item.name}}</th>
+                        <td class="center-txt">{{item.price}}</th>
+                        
+                        <td class="center-txt">
+                            <a data-toggle="modal" href="#" class="addToCart"><i class="material-icons" style="color: black; font-size: 26px;">&#xe854;</i></a>
+                            <!-- <a data-toggle="modal" href="#" class="button" data-target="#modalDelete-{{song.id}}"><i class="material-icons" style="color: red; font-size:28px;">&#xe92b;</i></a> -->
                         </td>
                     </tr>
                     <!-- modal for View -->
@@ -207,7 +223,7 @@ thead{
                     <!-- end of modal for View -->
 
                     <!-- modal for Delete -->
-                    <div class="modal fade" id="modalDelete-{{song.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <!-- <div class="modal fade" id="modalDelete-{{song.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header" style="background-color: #E60000;">
@@ -260,7 +276,7 @@ thead{
                         </div>
                         </form>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- end of modal for Delete -->
                     {% endfor %}
                 </tbody>
