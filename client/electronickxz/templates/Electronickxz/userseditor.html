@@ -1,6 +1,6 @@
 {% load static %}
 {% block headerinclude %}
-<title>Melody</title>
+<title>Electronickxz</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -130,7 +130,7 @@
                 <header>
                     <div class="row" style="margin-top: 1%; margin-bottom: 2%;">
                         <div class="logo-container"><img src="{% static 'melody/img/logo.png' %}" class="logo"></div>
-                        <div class="col" style="margin-top: 1%; margin-right: -40%;"><h4>MELODY</h4></div>
+                        <div class="col" style="margin-top: 1%; margin-right: -40%;"><h4>Electronickxz</h4></div>
                         <div class="col" style="margin-top: 2%;"><h3>CUSTOMER DASHBOARD</h3></div>
                     </div>       
                 </header>
@@ -149,9 +149,10 @@
                 <!-- <span style="display:inline-block; vertical-align: 5px; margin-right: 10px;"><button type="button" class="btn btn-Excel" onclick="exportToExcel('data-table')">Export to Excel</button></span> -->
                 <a type="button" class="btn-Add" href="{% url 'electronickxz:productRegister_view' %}"><i class="material-icons" style="font-size: 18px;">&#xe148;</i><span class="txt">Add Customer</span></a> 
             </p>
-                <table class="table table-hover shadow" id="data-table">
+                <table class="table table-hover shadow" id="">
                     <thead>
                         <tr>
+                            <th scope="col">ID</th>
                             <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
                             <th scope="col">Birthdate</th>
@@ -161,14 +162,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for customer in customers %}
+                        {% for customer in data %}
                         <tr>
-                            <td>{{customer.firstname}}</td>
+                            <td >{{customer.id}}</td>
+                            <td>{{customer.name}}</td>
                             <td>{{customer.lastname}}</td>
                             <td>{{customer.birthday}}</td>
                             <td>{{customer.email}}</td>
                             <td>{{customer.contact}}</td>
-                            <td><a data-toggle="modal" href="#" class="button" data-target="#modalView-{{customer.id}}"><i class="material-icons" style="color: black; font-size: 26px;">&#xe88f;</i></a>
+                            <td>
+                                <a data-toggle="modal" href="#" class="button" data-target="#modalView-{{customer.id}}"><i class="material-icons" style="color: black; font-size: 26px;">&#xe88f;</i></a>
                                 <a data-toggle="modal" href="#" class="button" data-target="#modalDelete-{{customer.id}}"><i class="material-icons" style="color: red; font-size:28px;">&#xe92b;</i></a>
                             </td>
                         </tr>
@@ -297,6 +300,12 @@
                         {% endfor %}
                     </tbody>
                 </table>  
+                <div class="table">
+                
+                <a type="button" class="btn-Add"  href="{{metadata.links.prev}}" id="goPrevious"><i class="material-icons" style="font-size: 18px;">&#xe5c4;</i><span class="txt">Prev</span></a>
+                <a type="button" class="btn-Add" href="{{metadata.links.next}}" id="goNext"><span class="txt">Next</span><i class="material-icons" style="font-size: 18px;">&#xe5c8;</i></a>
+                
+                </div>
                  <!--end of datatable  -->
             </div>
             <!-- end of contents -->
@@ -325,4 +334,11 @@
           });
         }
     </script>
+    <!-- <script>
+        var goNext = document.getElementById("nextBtn");
+        goNext.addEventListener("click", function(){
+            if (goNext == true)
+
+        });
+    </script> -->
 {% endblock footerinclude %}

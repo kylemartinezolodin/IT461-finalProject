@@ -127,27 +127,25 @@ thead{
             </form>
             </p>
             <p align="right">
-                <a type="button" class="btn-Add" href="{% url 'electronickxz:productRegister_view' %}"><i class="material-icons" style="font-size: 18px;">&#xe148;</i><span class="txt">Add Song</span></a> 
+                <a type="button" class="btn-Add" href="{% url 'electronickxz:productRegister_view' %}"><i class="material-icons" style="font-size: 18px;">&#xeb88;</i><span class="txt">Check cart</span></a> 
             </p>
             <table class="table table-hover shadow" id="data-table">
                 <thead>
                     <tr>
-                        <th scope="col">Song Title</th>
-                        <th scope="col">Genre(s)</th>
-                        <th scope="col">Artist(s)</th>
-                        <th scope="col">Date Registered</th> 
-                        <th scope="col">Action</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Price)</th>
+                        <th scope="col">Add to Cart</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for song in songs %}
+                    {% for items in data %}
                     <tr>
-                        <th scope="row">{{song.songtitle}}</th>
-                        <td class="center-txt">{{song.genre}}</td>
-                        <td class="center-txt">{{song.artist}}</td>
-                        <td class="center-txt">{{song.dateRelease}}</td>
-                        <td class="center-txt"><a data-toggle="modal" href="#" class="button" data-target="#modalView-{{song.id}}"><i class="material-icons" style="color: black; font-size: 26px;">&#xe88f;</i></a>
-                            <a data-toggle="modal" href="#" class="button" data-target="#modalDelete-{{song.id}}"><i class="material-icons" style="color: red; font-size:28px;">&#xe92b;</i></a>
+                        <th scope="row">{{items.id}}</th>
+                        <td class="center-txt">{{items.name}}</td>
+                        <td class="center-txt">{{items.price}}</td>
+                        <td class="center-txt">
+                            <a data-toggle="modal" href="#" class="addToCart"><i class="material-icons" style="color: black; font-size: 26px;">&#xe854;</i></a>
                         </td>
                     </tr>
                     <!-- modal for View -->

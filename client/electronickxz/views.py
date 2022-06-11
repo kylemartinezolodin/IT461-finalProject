@@ -91,9 +91,9 @@ class EditorUsersView(View):
 			],
 			"metadata":{
 				"links":{
-					"curr":"google.com",
-					"next":"google.com",
-					"prev":"google.com",
+					"curr":"http://google.com",
+					"next":"http://google.com",
+					"prev":"http://google.com",
 				}
 			},
 			'user' : {"id": 69, "username": "Mongo", "type": "Standard"},
