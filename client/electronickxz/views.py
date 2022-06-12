@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.generic import View
 
 			
@@ -41,6 +41,9 @@ class IndexClientView(View):
 			'user' : {"id": 69, "username": "Mongo", "type": "Standard"},
 		}
 		return render(request, 'Electronickxz/clientdashboard.html', context)
+	
+	def post(self, request):
+		return redirect('electronickxz:checkout_view')
 
 		
 class EditorProductsView(View):
