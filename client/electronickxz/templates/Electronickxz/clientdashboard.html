@@ -151,6 +151,7 @@ thead{
                         <th scope="col">ID</th>
                         <th scope="col">Product Name</th>
                         <th scope="col">Price</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -159,7 +160,7 @@ thead{
                         <th scope="row">{{item.id}}</th>
                         <td class="center-txt">{{item.name}}</th>
                         <td class="center-txt">{{item.price}}</th>
-                        
+                        <td class="center-txt" id="link-{{item.id}}" hidden>{{item.link}}</td>
                         <td class="center-txt">
                             <a data-toggle="modal" href="#" class="addToCart" onclick="showMessage()" data-target="#modalView-{{item.id}}"><i class="material-icons" style="color: black; font-size: 26px;">&#xe854;</i></a>
                             <!-- <a data-toggle="modal" href="#" class="button" data-target="#modalDelete-{{song.id}}"><i class="material-icons" style="color: red; font-size:28px;">&#xe92b;</i></a> -->
@@ -271,7 +272,13 @@ thead{
                     {% endfor %}
                 </tbody>
             </table>  
-             <!--end of datatable  -->
+            <div class="table">
+                
+                <a type="button" class="btn-Add"  href="{{metadata.links.prev}}" id="goPrevious"><i class="material-icons" style="font-size: 18px;">&#xe5c4;</i><span class="txt">Prev</span></a>
+                <a type="button" class="btn-Add" href="{{metadata.links.next}}" id="goNext"><span class="txt">Next</span><i class="material-icons" style="font-size: 18px;">&#xe5c8;</i></a>
+                
+            </div>
+              <!--end of datatable  -->
         </div>
         <!-- end of content -->
     </div>
