@@ -18,17 +18,20 @@ class IndexClientView(View):
 				{
 				"id": 420,
 				"name": "kong",
-				"price": 69.69
+				"price": 69.69,
+				"link": "google.com"
 				},
 				{
 				"id": 421,
 				"name": "Jong",
-				"price": 69.69
+				"price": 69.69,
+				"link": "youtube.com"
 				},
 				{
 				"id": 422,
 				"name": "Bong",
-				"price": 69.69
+				"price": 69.69,
+				"link": "facebook.com"
 				},
 			],
 			"metadata":{
