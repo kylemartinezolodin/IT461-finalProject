@@ -157,7 +157,7 @@
                             <th scope="col">Last Name</th>
                             <th scope="col">Birthdate</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Contact no.</th> 
+                            <th scope="col">Type</th> 
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -165,16 +165,18 @@
                         {% for customer in data %}
                         <tr>
                             <td >{{customer.id}}</td>
-                            <td>{{customer.name}}</td>
-                            <td>{{customer.lastname}}</td>
+                            <td>{{customer.fname}}</td>
+                            <td>{{customer.lname}}</td>
                             <td>{{customer.birthday}}</td>
-                            <td>{{customer.email}}</td>
-                            <td>{{customer.contact}}</td>
+                            <td>{{customer.username}}</td>
+                            <td>{{customer.type}}</td>
                             <td>
+                                
                                 <a data-toggle="modal" href="#" class="button" data-target="#modalView-{{customer.id}}"><i class="material-icons" style="color: black; font-size: 26px;">&#xe88f;</i></a>
-                                <a data-toggle="modal" href="#" class="button" data-target="#modalDelete-{{customer.id}}"><i class="material-icons" style="color: red; font-size:28px;">&#xe92b;</i></a>
+                                <a data-toggle="modal" href="#" class="button" onlick="deleteUserPls()"><i class="material-icons" style="color: red; font-size:28px;">&#xe92b;</i></a>
                             </td>
                         </tr>
+                       
                         <!-- modal for View -->
                         <div class="modal fade" id="modalView-{{customer.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
@@ -243,7 +245,7 @@
                         <!-- end of modal for View -->
                         
                         <!-- modal for Delete -->
-                        <div class="modal fade" id="modalDelete-{{customer.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header" style="background-color: #E60000;">
@@ -301,10 +303,13 @@
                     </tbody>
                 </table>  
                 <div class="table">
-                
-                <a type="button" class="btn-Add"  href="{{metadata.links.prev}}" id="goPrevious"><i class="material-icons" style="font-size: 18px;">&#xe5c4;</i><span class="txt">Prev</span></a>
-                <a type="button" class="btn-Add" href="{{metadata.links.next}}" id="goNext"><span class="txt">Next</span><i class="material-icons" style="font-size: 18px;">&#xe5c8;</i></a>
-                
+                    {% if metadata.links.previous is not null %}
+                    <a type="button" class="btn-Add"  onclick="changePage('{{metadata.links.previous}}')" id="goPrevious"><i class="material-icons" style="font-size: 18px;">&#xe5c4;</i><span class="txt">Prev</span></a>
+                    {% endif %}
+    
+                    {% if metadata.links.next is not null %}
+                    <a type="button" class="btn-Add" onclick="changePage('{{metadata.links.next}}')" id="goNext"><span class="txt">Next</span><i class="material-icons" style="font-size: 18px;">&#xe5c8;</i></a>
+                    {% endif %}
                 </div>
                  <!--end of datatable  -->
             </div>
@@ -332,6 +337,66 @@
           dropdownContent.style.display = "block";
           }
           });
+        }
+
+        function deleteUserPls(){
+            alert("Delete user?");
+        }
+
+        function parseGETfromUrl ( query = location.search.substring( 1 ) ) {
+            query = query.slice(query.indexOf("?"));
+            let parameters = {};
+            for ( const [ name, value ] of new URLSearchParams( query ) ) parameters[name] = value;
+            return parameters;
+        }
+
+        function changePage(url) {
+            param = parseGETfromUrl( url )
+            console.log(param);
+            console.log(window.location)
+
+            url = new URL(window.location.href)
+            // url.searchParams.set('token', param["token"]);
+            url.searchParams.set('offset', param["offset"]);
+            window.location = url
+            // window.location.pathname = "/\?token=" +param["token"]
+
+        }
+
+        function displayItem(id){
+            console.log($('#viewModal'))
+            $('#viewModal').modal('toggle')
+            param = parseGETfromUrl(window.location.href)
+            $.ajax({
+                type: "get",
+                url: "http://127.0.0.1:8080/session/token",
+                dataType: "text",
+                // async: true,
+                // dataType: "jsonp",
+                // crossDomain: true,
+                success: function( token ) {
+
+                    $.ajax({
+                        type: "get",
+                        url: "http://127.0.0.1:8081/api/v1/users/"+id+"?token="+token,
+                        dataType: "json",
+                        // async: true,
+                        // dataType: "jsonp",
+                        // crossDomain: true,
+                        success: function( result ) {
+                            console.log(result)
+                            // console.log("wad" +id)
+                            document.querySelector("#modalProductName").value = result["name"];
+                            document.querySelector("#modalProductPrice").value = result["price"];
+                            document.querySelector("#modalProductQuantity").value = result["quantity"];
+                            // $('#viewModal').modal('show')
+                        }
+                    });
+                }
+            });
+
+            console.log("mawaaaaaa")
+
         }
     </script>
     <!-- <script>
