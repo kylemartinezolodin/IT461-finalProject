@@ -1,7 +1,7 @@
 {% load static %}
 
 {% block headerinclude %}
-<title>Melody</title>
+<title>electronickxz</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -9,32 +9,30 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="{% static 'melody/css/index.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'melody/css/form.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'melody/css/main.css' %}">
-        <!-- <link rel="stylesheet" href="{% static 'melody/css/bootstrap.min.css' %}"> -->
+  <link rel="stylesheet" type="text/css" href="{% static 'electronickxz/css/index.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'electronickxz/css/form.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'electronickxz/css/main.css' %}">
+        <!-- <link rel="stylesheet" href="{% static 'electronickxz/css/bootstrap.min.css' %}"> -->
         <!-- Material Design Bootstrap -->
-  <link rel="stylesheet"  href="{% static 'melody/css/mdib.css' %}">
-  <link rel="stylesheet"  href="{% static 'melody/css/modules/animations-extended.min.css' %}"> 
+  <link rel="stylesheet"  href="{% static 'electronickxz/css/mdib.css' %}">
+  <link rel="stylesheet"  href="{% static 'electronickxz/css/modules/animations-extended.min.css' %}"> 
 {% endblock headerinclude %}
     <!-- registration form -->
     <div class="container-fluid bg">
       <!-- header -->
         <div class="header row">
-          <div class="col"><h2 class="head">Melody</h2></div>
-          <div class="col" style="margin-left: 55%"><a href="#aboutusModal" class="a-design" type="button" data-toggle="modal">About Us</a> | <a href="#contactusModal" class="a-design" type="button" data-toggle="modal">Contact Us</a></div>  
+          <div class="col"><h2 class="head">ELECTRONICKXZ</h2></div>
         </div>
       <!-- end of header -->
       <div class="row indexBox shadow">
           <!-- left side of the landing page -->
           <div class="col-md-4 left register-form">
-              <h2 class="title">Log In</h2>
+              <h2 class="title">Login</h2>
               <form class="padding" id="form1" action="" method="POST" autocomplete="off" enctype="multipart/form-data">
                   {% csrf_token %}
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
-                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                    <label for="exampleInputUsername">Username</label>
+                    <input type="username" class="form-control" id="username" name="username" placeholder="Enter username">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
@@ -44,7 +42,7 @@
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                   </div> -->
-                  <button type="submit" class="btn btn-primary" id="btnLogin" name="btnLogin">Log in</button>
+                  <button type="submit" class="btn btn-primary" id="btnLogin" name="btnLogin">Login</button>
                 </form>
                 <p class="text-style">No account yet? Click here to <a href="{% url 'electronickxz:register_view' %}" style="color: blue; font-size: 16px;">Register</a></p>
           </div>
@@ -52,97 +50,13 @@
 
           <!-- right side of the landing page -->
           <div class="col-md-8">
-              <img src="{% static 'melody/img/frontImg.png'%}" class="landing-img">
+              <img src="{% static 'electronickxz/img/logo.png'%}" class="landing-img">
           </div>
           <!-- end of the right side of the landing page -->
       </div>
     </div>
     <!-- end of registration form -->
 
-    <!-- modal for About Us -->
-<div class="modal fade" id="aboutusModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
-    <!--Content-->
-    <div class="modal-content">
-      <!--Header-->
-      <div class="modal-header">
-        <p class="heading">About the Authors</p>
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" class="white-text">&times;</span>
-        </button>
-      </div>
-
-      <!--Body-->
-      <div class="modal-body">
-
-        <div class="row">
-          <div class="col-5">`
-            <img src="{% static 'melody/img/author1.png' %}" style="width: 150px" style="height: 150px">
-            <img src="{% static 'melody/img/author2.png' %}" style="width: 150px" style="height: 150px">
-          </div>
-
-          <div class="col-7">
-            <p><strong>Authors:</strong></p>
-            <p><strong>Therese Bolabola</strong>, Is the greatest carry of all CCS students and is the smartest person on earth and especially on math.</p>
-            <p><strong>John Jefferson Sison</strong>, has the most slowest internet ever with a 100kbps as max speed.</p>
-            <p><strong>Mission, Vision & Goal:</strong></p>
-            <p>Our Mission, is to provide high quality music to the world.</p>
-            <p>Our Vision, is to see people living fully with our app and musics.</p>
-            <p>Our Goal, is for people to finally see the importance of music in their daily lives.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--/.Content-->
-  </div>
-</div>
-    <!-- end of modal for About Us -->
-
-    <!-- modal for Contact Us -->
-
-<div class="modal fade right" id="contactusModal" tabindex="-1" role="dialog"
-  aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
-    <!--Content-->
-    <div class="modal-content">
-      <!--Header-->
-      <div class="modal-header">
-        <p class="heading">Contact Us</p>
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" class="white-text">&times;</span>
-        </button>
-      </div>
-
-      <!--Body-->
-      <div class="modal-body">
-
-        <div class="row">
-          <div class="col-5">
-            <img src="{% static 'melody/img/author1.png' %}" style="width: 100px" style="height: 100px">
-            <img src="{% static 'melody/img/author2.png' %}" style="width: 100px" style="height: 100px">
-          </div>
-
-          <div class="col-7">
-            <p><strong>Emails and phone no.:</strong></p>
-            <p>09221231234</p>
-            <a href="landingpage">@melodyCorp</a>
-            <br>
-            <a href="https://www.facebook.com/therese.bolabola">@Theresebola2x</a>
-            <br>
-            <a href="https://www.facebook.com/johnjefferson.sison/">@johnJeffersonSison</a>
-
-            <!--<button href="contacus.html" type="button" class="btn btn-info btn-md">Read more</button>-->
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--/.Content-->
-  </div>
-</div>
-    <!-- end of modal for Contact Us -->
 
 {% block footerinclude %}
 {% endblock footerinclude %}

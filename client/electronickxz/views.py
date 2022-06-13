@@ -1,16 +1,33 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.views.generic import View
 
 			
 class LoginView(View):
 	def get(self, request):
 		return render(request, 'Electronickxz/login.html')
-
+	def post(self, request):
+		username = request.POST.get("username")
+		password = request.POST.get("password")
+		if 'btnLogin' in request.POST:
+			print(username)
+			print(password)
+			return redirect('electronickxz:index_view')
+				
 class RegistrationView(View):
 	def get(self, request):
 		return render(request, 'Electronickxz/register.html')
-		
+	def post(self, request):
+		fname = request.POST.get("firstname")
+		lname = request.POST.get("lastname")
+		username = request.POST.get("username")
+		password = request.POST.get("password")
 
+		print(fname)
+		print(lname)
+		print(username)
+		return redirect('electronickxz:index_view')
+		
 class IndexClientView(View):
 	def get(self, request):
 		context={
