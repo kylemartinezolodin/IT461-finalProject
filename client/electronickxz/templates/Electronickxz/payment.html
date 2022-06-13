@@ -1,0 +1,296 @@
+{% load static %}
+{% block headerinclude %}
+<title>Electronickxz</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<!-- custom css -->
+<link rel="stylesheet" type="text/css" href="{% static 'melody/css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'melody/css/table.css' %}">
+<link rel="stylesheet" type="text/css" href="{%static 'melody/css/sidebar.css' %}">
+<!-- css for datatable -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+<link src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js">
+<style>.dropdown-button{cursor: pointer; border: none;}.dropdown-container {display: none; background-color: #262626;}
+        .dropdown-container:active{background-color: #262626;}.logo-container{ width: 50px; height: 50px; margin-left: 3%;}
+        .line{ height:2px;border-width:0;color:gray;background-color:gray;}a.buttonAdd:active, a.buttonAdd:hover {text-decoration: none;color: white; background-color: #6b22ff;}
+        a.buttonAdd{background-color: #8a50ff;}.table{text-align: center;}
+        input.display{background-color: white; padding: 2%; width: 350px; border-top: hidden; border-left: hidden; border-right: hidden;border-width: 1px;}
+        .no-outline:focus{outline: none;}
+
+        .btn{border-radius: 50px; padding-right: 18px; padding-left: 18px;}
+        .btn:hover{box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); transition: 300ms;}
+thead{
+    background-color: #5900B3; 
+    color: white; 
+    text-align: center;
+}
+
+.center-txt{
+    text-align: center;
+}
+
+.btn-Add:hover{
+    background-color: #5900B3; 
+    color: white; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    transition: 300ms;
+}
+
+.btn-Add{
+    background-color: white; 
+    color: #5900B3; 
+    padding-top: 6px; 
+    padding-bottom: 6px; 
+    padding-left:14px; 
+    padding-right: 18px; 
+    font-size: 17px; 
+    border-style:solid; 
+    border-color: #5900B3; 
+    border-radius: 50px; 
+    border-width: 1px;
+}
+
+.txt{
+    display:inline-block; 
+    vertical-align: 3px; 
+    margin-left: 5px;
+}
+
+.checkout-panel {
+  display: flex;
+  flex-direction: column;
+  width: 940px;
+  height: 766px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .2);
+}
+
+.panel-body {
+  padding: 45px 80px 0;
+  flex: 1;
+}
+ 
+.title {
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 40px;
+  color: #2e2e2e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-method {
+  display: flex;
+  margin-bottom: 60px;
+  justify-content: space-between;
+}
+ 
+.method {
+  display: flex;
+  flex-direction: column;
+  width: 382px;
+  height: 122px;
+  padding-top: 20px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background-color: rgb(249, 249, 249);
+  justify-content: center;
+  align-items: center;
+}
+ 
+.card-logos {
+  display: flex;
+  width: 150px;
+  justify-content: space-between;
+  align-items: center;
+}
+ 
+.radio-input {
+  margin-top: 20px;
+}
+ 
+input[type='radio'] {
+  display: inline-block;
+}
+
+</style>
+{% endblock headerinclude %}
+
+
+
+<!-- body -->
+    <div class="container-fluid p-0">
+        <!-- start of row -->
+        <div class="row" id="body-row">
+            <!-- start of sidebar -->
+            <div id="sidebar-container" class="sidebar-expanded shadow">
+            <div class="img-circle">
+                {% if user.profilepicture.url is not null %}
+                <img src="{{user.profilepicture.url}}" class="circle">
+                {% else %}
+                <img src="{% static 'melody/img/default-avatar.png' %}" class="circle">
+                {% endif %}
+            </div>
+            <center><p style="color: #D1D1D1;; margin-top: 5%; margin-bottom: 10%;">Welcome, {{user.firstname}}!!!</p></center>
+                <ul class="list-group">
+                    <li class="list-group-item sidebar-separated-title d-flex">
+                        <small style="color: #D1D1D1;">MAIN MENU</small>
+                    </li>
+                    <a class="bg-dark list-group-item list-group-item-action flex-column dropdown-button" style="font-size: 1.1rem;">
+                            <div class="d-flex w-100 justify-content-start align-items-center">
+                                <span class="ml-3 mr-3"><i class="material-icons">&#xe871;</i></span>Dashboard
+                                <span class="ml-3"><i class="material-icons">&#xe5c5;</i></span>
+                            </div>
+                    </a>
+                    <div class="dropdown-container">
+                        <a href="{% url 'electronickxz:editorUser_view' %}" class="bg-dark list-group-item list-group-item-action flex-column"><span class="ml-5 mr-2"><i class="material-icons"  style="display: inline-block; vertical-align: -5px;">&#xe7fb;</i></span>Customer</a>
+                        <a href="#" class="bg-dark list-group-item list-group-item-action flex-column"><span class="ml-5 mr-2"><i style='font-size:24px' class='fab'>&#xf1be;</i></span>Product</a>
+                    </div>
+                    <a href="#" class="bg-dark list-group-item list-group-item-action flex-column" style="font-size: 1.1rem;">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="ml-3 mr-3"><i class="material-icons">&#xe853;</i></span>Profile
+                        </div>
+                    </a>
+                </ul>
+                <ul class="list-group" style="margin-top: 25%;">
+                    <a href="{% url 'electronickxz:login_view' %}" class="bg-dark list-group-item list-group-item-action flex-column" style="font-size: 1.1rem; border: none; color: #D1D1D1;">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="ml-5 mr-2"><i class="material-icons">&#xe879;</i></span>Log Out
+                        </div>
+                    </a>
+                </ul>
+            </div>
+
+        <!-- start of content -->
+        <div class="col">
+            <header>
+                <div class="row" style="margin-top: 1%; margin-bottom: 2%;">
+                    <div class="logo-container"><img src="{% static 'melody/img/logo.png' %}" class="logo"></div>
+                    <div class="col" style="margin-top: 1%; margin-right: -40%;"></div><!--<h4>Electronickxz/</h4>-->
+                    <div class="col" style="margin-top: 2%;"><h3>Payment Method</h3></div>
+                </div>       
+            </header>
+            <hr class="line">
+            <p>
+                <form id="date-filter" name="date-filter" method="POST">
+                    {% csrf_token %}
+                <!-- <span class="date-label">From: </span><input type="date" name = "datepicker_from" id="datepicker_from" style="margin-left: 5px;" value="">
+                <span class="date-label" style="margin-left: 20px;">To:<input type="date" name = "datepicker_to" id="datepicker_to" style="margin-left: 5px;" value="">
+                <span style="display:inline-block; vertical-align: 2px; margin-left: 10px;"><button type="submit" class="btn btn-outline-primary" id="btnFilter" name="btnFilter">Filter</button></span>
+                <span style="display:inline-block; vertical-align: 2px; margin-left: 5px;"><a type="button" class="btn btn-outline-secondary" href="{% url 'electronickxz:index_view' %}">Refresh</a></span> -->
+                 
+            </form>
+            </p>
+            <p align="right">
+                <!-- <a type="button" class="btn-Add" href="{% url 'electronickxz:productRegister_view' %}"><i class="material-icons" style="font-size: 18px;">shopping_cart</i><span class="txt">Checkout</span></a>  -->
+            </p>
+
+            <div class="checkout-panel" style="align-items: center;">
+                <div class="panel-body">
+                  <h2 class="title">Checkout</h2>
+               
+                  
+               
+                  <div class="payment-method">
+                    <label for="card" class="method card">
+                      <div class="card-logos">
+                        <div>
+                            <img style="width:100%; height:50%" src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png"/>
+                        </div>
+                        
+                        <img style="width:50%; height:100%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/MasterCard_early_1990s_logo.png/1200px-MasterCard_early_1990s_logo.png"/>
+                      </div>
+               
+                      <div class="radio-input">
+                        <input id="card" type="radio" name="payment">
+                        Pay P340.00 with credit card
+                      </div>
+                    </label>
+               
+                    <label for="paypal" class="method paypal">
+                      <img  style="width:40%; height:40%" src="https://pngimg.com/uploads/paypal/paypal_PNG4.png"/>
+                      <div class="radio-input">
+                        <input id="paypal" type="radio" name="payment">
+                        Pay P340.00 with PayPal
+                      </div>
+                    </label>
+                  </div>
+               
+                  <div class="input-fields">
+                    <div class="column-1">
+                      <label for="cardholder">Cardholder's Name</label>
+                      <input type="text" id="cardholder" />
+               
+                      <div class="small-inputs">
+                        <div>
+                          <label for="date">Valid thru</label>
+                          <input type="text" id="date" placeholder="MM / YY" />
+                        </div>
+               
+                        <div>
+                          <label for="verification">CVV / CVC *</label>
+                          <input type="password" id="verification"/>
+                        </div>
+                      </div>
+               
+                    </div>
+                    <div class="column-2">
+                      <label for="cardnumber">Card Number</label>
+                      <input type="password" id="cardnumber"/>
+               
+                      <span class="info">* CVV or CVC is the card security code, unique three digits number on the back of your card separate from its number.</span>
+                    </div>
+                  </div>
+                </div>
+               
+                <div class="panel-footer">
+                  <button class="btn back-btn">Back</button>
+                  <button class="btn next-btn">Confirm Payment</button>
+                </div>
+              </div>
+            
+        <!-- end of content -->
+    </div>
+    <!-- end of row -->
+</div>
+<!-- end of body -->           
+{% block footerinclude %}
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="{% static 'melody/js/datatable.js' %}"></script>
+    <script>
+        var dropdown = document.getElementsByClassName("dropdown-button");
+        var i;
+        for (i = 0; i < dropdown.length; i++) {
+          dropdown[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var dropdownContent = this.nextElementSibling;
+          if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+          } else {
+          dropdownContent.style.display = "block";
+          }
+          });
+        }
+    </script>
+{% endblock footerinclude %}
