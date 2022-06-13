@@ -126,3 +126,7 @@ class CheckoutView(View):
 			'user' : {"id": 69, "username": "Mongo", "type": "Standard"},
 		}
 		return render(request, 'Electronickxz/checkout.html', context)
+
+class PaymentView(View):
+	def get(self, request):
+		return render(request, 'Electronickxz/payment.html')
