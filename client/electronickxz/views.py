@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.generic import View
 
 			
@@ -18,17 +18,20 @@ class IndexClientView(View):
 				{
 				"id": 420,
 				"name": "kong",
-				"price": 69.69
+				"price": 69.69,
+				"link": "google.com"
 				},
 				{
 				"id": 421,
 				"name": "Jong",
-				"price": 69.69
+				"price": 69.69,
+				"link": "youtube.com"
 				},
 				{
 				"id": 422,
 				"name": "Bong",
-				"price": 69.69
+				"price": 69.69,
+				"link": "facebook.com"
 				},
 			],
 			"metadata":{
@@ -41,6 +44,9 @@ class IndexClientView(View):
 			'user' : {"id": 69, "username": "Mongo", "type": "Standard"},
 		}
 		return render(request, 'Electronickxz/clientdashboard.html', context)
+	
+	def post(self, request):
+		return redirect('electronickxz:checkout_view')
 
 		
 class EditorProductsView(View):
@@ -91,9 +97,9 @@ class EditorUsersView(View):
 			],
 			"metadata":{
 				"links":{
-					"curr":"google.com",
-					"next":"google.com",
-					"prev":"google.com",
+					"curr":"http://google.com",
+					"next":"http://google.com",
+					"prev":"http://google.com",
 				}
 			},
 			'user' : {"id": 69, "username": "Mongo", "type": "Standard"},

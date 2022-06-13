@@ -151,6 +151,7 @@ thead{
                         <th scope="col">ID</th>
                         <th scope="col">Product Name</th>
                         <th scope="col">Price</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -159,48 +160,38 @@ thead{
                         <th scope="row">{{item.id}}</th>
                         <td class="center-txt">{{item.name}}</th>
                         <td class="center-txt">{{item.price}}</th>
-                        
+                        <td class="center-txt" id="link-{{item.id}}" hidden>{{item.link}}</td>
                         <td class="center-txt">
-                            <a data-toggle="modal" href="#" class="addToCart"><i class="material-icons" style="color: black; font-size: 26px;">&#xe854;</i></a>
+                            <a data-toggle="modal" href="#" class="addToCart" onclick="showMessage()" data-target="#modalView-{{item.id}}"><i class="material-icons" style="color: black; font-size: 26px;">&#xe854;</i></a>
                             <!-- <a data-toggle="modal" href="#" class="button" data-target="#modalDelete-{{song.id}}"><i class="material-icons" style="color: red; font-size:28px;">&#xe92b;</i></a> -->
                         </td>
                     </tr>
                     <!-- modal for View -->
-                    <div class="modal fade" id="modalView-{{song.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal fade" id="modalView-{{item.id}}" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header modal-view" style="background-color: #4D6AFF;">
-                            <h5 class="modal-title w-100 text-center" id="exampleModalLabel" style="color: white;">Song Information</h5>
+                            <h5 class="modal-title w-100 text-center" id="exampleModalLabel" style="color: white;">Product Information</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true" style="color: white;">&times;</span>
                             </button>
                             </div>
-                            <form id="updateSong" method="POST" autocomplete="off" enctype="multipart/form-data">
+                            <form id="buyProduct" method="POST" autocomplete="off" enctype="multipart/form-data">
                             {% csrf_token%}
                             <div class="modal-body">
                                 <div style="margin-left: 2%; margin-right: 2%;">
-                                    <input type="text" name="song-id" value = {{song.id}} hidden>
+                                    
                                     <div class="row"> 
                                         <div class="form-group col">
-                                            <label>Song Title</label>
-                                            <input type="text" class="form-control" placeholder="Song Title" name="song-title" value="{{song.songtitle}}">
+                                            <label>Product Name</label>
+                                            <input type="text" class="form-control" placeholder="Product Name" id="productIDname" name="product-name" value="" readonly>
                                         </div>
                                         <div class="form-group col">
-                                            <label>Date Registered</label>
-                                            <input type="date" class="form-control" name="song-release" value="{{song.dateRelease}}">
+                                            <label>Price</label>
+                                            <input type="text" class="form-control" placeholder="Item Price" id="productIDprice" name="product-price" value="" readonly>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label>Artist(s)</label>
-                                            <input type="text" class="form-control" placeholder="Artist(s)" name="song-artists" value="{{song.artist}}">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label>Genre(s)</label>
-                                            <input type="text" class="form-control" placeholder="Genre" name="song-genre" value="{{song.genre}}">
-                                        </div>
-                                    </div>
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="form-group col">
                                             <label>Song Writer(s)</label>
                                             <textarea class="form-control" rows="2" placeholder="SongWriter(s)" name="song-writer">{{song.songwriter}}</textarea>
@@ -209,12 +200,12 @@ thead{
                                             <label>Producer(s)</label>
                                             <textarea class="form-control" rows="2" placeholder="Producer(s)" name="song-producer">{{song.producer}}</textarea>
                                         </div>
-                                    </div>                       
+                                    </div>                        -->
                                 </div>
                             </div>
                             <div class="modal-footer justify-content-center">
                             <button type="button" class="btn btn-outline-secondary shadow" data-dismiss="modal">Close</button>
-                            <button type="submit" id="btnUpdate" name="btnUpdate" class="btn btn-outline-primary shadow">Update</button>
+                            <button type="submit" id="addToCartbtn"  name="addToCartbtn" class="btn btn-outline-primary shadow">Add to Cart</button>
                             </div>
                         </div>
                         </form>
@@ -281,7 +272,13 @@ thead{
                     {% endfor %}
                 </tbody>
             </table>  
-             <!--end of datatable  -->
+            <div class="table">
+                
+                <a type="button" class="btn-Add"  href="{{metadata.links.prev}}" id="goPrevious"><i class="material-icons" style="font-size: 18px;">&#xe5c4;</i><span class="txt">Prev</span></a>
+                <a type="button" class="btn-Add" href="{{metadata.links.next}}" id="goNext"><span class="txt">Next</span><i class="material-icons" style="font-size: 18px;">&#xe5c8;</i></a>
+                
+            </div>
+              <!--end of datatable  -->
         </div>
         <!-- end of content -->
     </div>
@@ -308,5 +305,12 @@ thead{
           }
           });
         }
+
+        function showMessage(){
+            console.log("Hello");
+            document.querySelector("#productIDname").value = "Bisag unsa na name";
+            document.querySelector("#productIDprice").value = "Bisag unsa na price";
+        }
     </script>
+    
 {% endblock footerinclude %}
