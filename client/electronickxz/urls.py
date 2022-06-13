@@ -10,4 +10,5 @@ urlpatterns=[
     path('editor/products/register', views.EditorProductsRegistrationView.as_view(), name="productRegister_view"),
     path('editor/users', views.EditorUsersView.as_view(), name="editorUser_view"),
     path('checkout', views.CheckoutView.as_view(), name="checkout_view"),
+    path('payment', views.PaymentView.as_view(), name="payment_view"),
 ]

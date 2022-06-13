@@ -1,6 +1,6 @@
 {% load static %}
 {% block headerinclude %}
-<title>Melody</title>
+<title>Electronickxz</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -111,51 +111,51 @@ thead{
             <header>
                 <div class="row" style="margin-top: 1%; margin-bottom: 2%;">
                     <div class="logo-container"><img src="{% static 'melody/img/logo.png' %}" class="logo"></div>
-                    <div class="col" style="margin-top: 1%; margin-right: -40%;"><h4>MELODY</h4></div>
-                    <div class="col" style="margin-top: 2%;"><h3>PRODUCT DASHBOARD</h3></div>
+                    <div class="col" style="margin-top: 1%; margin-right: -40%;"></div><!--<h4>Electronickxz/</h4>-->
+                    <div class="col" style="margin-top: 2%;"><h3>Checkout Cart</h3></div>
                 </div>       
             </header>
             <hr class="line">
             <p>
                 <form id="date-filter" name="date-filter" method="POST">
                     {% csrf_token %}
-                <span class="date-label">From: </span><input type="date" name = "datepicker_from" id="datepicker_from" style="margin-left: 5px;" value="">
+                <!-- <span class="date-label">From: </span><input type="date" name = "datepicker_from" id="datepicker_from" style="margin-left: 5px;" value="">
                 <span class="date-label" style="margin-left: 20px;">To:<input type="date" name = "datepicker_to" id="datepicker_to" style="margin-left: 5px;" value="">
                 <span style="display:inline-block; vertical-align: 2px; margin-left: 10px;"><button type="submit" class="btn btn-outline-primary" id="btnFilter" name="btnFilter">Filter</button></span>
-                <span style="display:inline-block; vertical-align: 2px; margin-left: 5px;"><a type="button" class="btn btn-outline-secondary" href="{% url 'electronickxz:index_view' %}">Refresh</a></span>
+                <span style="display:inline-block; vertical-align: 2px; margin-left: 5px;"><a type="button" class="btn btn-outline-secondary" href="{% url 'electronickxz:index_view' %}">Refresh</a></span> -->
                  
             </form>
             </p>
             <p align="right">
-                <a type="button" class="btn-Add" href="{% url 'electronickxz:productRegister_view' %}"><i class="material-icons" style="font-size: 18px;">&#xe148;</i><span class="txt">Add Song</span></a> 
+                <a type="button" class="btn-Add" href="{% url 'electronickxz:productRegister_view' %}"><i class="material-icons" style="font-size: 18px;">shopping_cart</i><span class="txt">Checkout</span></a> 
             </p>
             <table class="table table-hover shadow" id="data-table">
                 <thead>
                     <tr>
-                        <th scope="col">Song Title</th>
-                        <th scope="col">Genre(s)</th>
-                        <th scope="col">Artist(s)</th>
-                        <th scope="col">Date Registered</th> 
+                        <th scope="col" style="width:25%">Product ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <!-- <th scope="col">Total Price</th>  -->
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for song in songs %}
+                    {% for item in data %}
                     <tr>
-                        <th scope="row">{{song.songtitle}}</th>
-                        <td class="center-txt">{{song.genre}}</td>
-                        <td class="center-txt">{{song.artist}}</td>
-                        <td class="center-txt">{{song.dateRelease}}</td>
-                        <td class="center-txt"><a data-toggle="modal" href="#" class="button" data-target="#modalView-{{song.id}}"><i class="material-icons" style="color: black; font-size: 26px;">&#xe88f;</i></a>
+                        <th scope="row">{{item.id}}</th>
+                        <td class="center-txt">{{item.name}}</td>
+                        <td class="center-txt">{{item.price}}</td>
+                        <!-- <td class="center-txt">{{item.totalPrice}}</td> -->
+                        <td class="center-txt"><a data-toggle="modal" href="#" class="button" data-target="#modalView-{{item.id}}"><i class="material-icons" style="color: black; font-size: 26px;">&#xe88f;</i></a>
                             <a data-toggle="modal" href="#" class="button" data-target="#modalDelete-{{song.id}}"><i class="material-icons" style="color: red; font-size:28px;">&#xe92b;</i></a>
                         </td>
                     </tr>
                     <!-- modal for View -->
-                    <div class="modal fade" id="modalView-{{song.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal fade" id="modalView-{{item.id}}" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header modal-view" style="background-color: #4D6AFF;">
-                            <h5 class="modal-title w-100 text-center" id="exampleModalLabel" style="color: white;">Song Information</h5>
+                            <h5 class="modal-title w-100 text-center" id="exampleModalLabel" style="color: white;">Product Information</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true" style="color: white;">&times;</span>
                             </button>
@@ -167,8 +167,8 @@ thead{
                                     <input type="text" name="song-id" value = {{song.id}} hidden>
                                     <div class="row"> 
                                         <div class="form-group col">
-                                            <label>Song Title</label>
-                                            <input type="text" class="form-control" placeholder="Song Title" name="song-title" value="{{song.songtitle}}">
+                                            <label>Product</label>
+                                            <input type="text" class="form-control" placeholder="Product" name="product" value="{{item.product}}">
                                         </div>
                                         <div class="form-group col">
                                             <label>Date Registered</label>
