@@ -1,16 +1,17 @@
-@host = http://127.0.0.1:8080/v1/users
-@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOjEsImV4cCI6MTY1NDk1MTI4Mn0.QCH_dswKWPvLDHKa4eYyMl2N3LnqIw8n9TRr6JjeczY
+@host = http://127.0.0.1:8081/api/v1/users
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOjEsImV4cCI6MTY1NTIwMDI0Mn0.ZyO9v0O8oKijXGDrX5YMFVr2snfzYSVd_2lL8roQlPE
 ####
-GET http://127.0.0.1:8080/v1/login HTTP/1.1
+GET http://127.0.0.1:8081/api/v1/login HTTP/1.1
 
 ### POST
-POST http://127.0.0.1:8080/v1/login HTTP/1.1
+POST http://127.0.0.1:8081/api/v1/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "mingming4",
-    "password": "awww"
+    "username": "admin",
+    "password": "admin"
 }
+
 ### Get all users
 GET {{host}}/?token={{token}} HTTP/1.1
 
@@ -22,16 +23,20 @@ Content-Type: application/json
 [
   {
     "id": 0,
+    "fname": "mini",
+    "lname": "winie",
     "username": "mini",
     "password": "awww",
     "type": "standard"
-  }
-#   {
-#     "id": 0,
-#     "username": "minie",
-#     "password": "awwwzzz",
-#     "type": "admin"
-# }
+  },
+  {
+     "id": 0,
+    "fname": "mini",
+    "lname": "koni",
+    "username": "minie",
+    "password": "awwwzzz",
+    "type": "admin"
+}
 ]
 
 

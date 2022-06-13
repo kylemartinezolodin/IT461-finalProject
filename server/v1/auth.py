@@ -20,7 +20,7 @@ def verify_token(token):
 
 def login(username, password):
     db = Db.get_instance()
-    sql = "SELECT * FROM users WHERE password = %s AND username = %s"
+    sql = "SELECT id, username, fname, type FROM users WHERE password = %s AND username = %s"
     
     if username != "admin": # do not hash when logging in to admin, since its the only way to have a valid token and u could not hash password during initialization of that user
         password = hashlib.md5(password.encode()).hexdigest() # hash the password
@@ -34,5 +34,5 @@ def login(username, password):
             'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)
         }
         token = jwt.encode(payload, current_app.config['SECRET_KEY'], algorithm='HS256')
-        return token
-    return False
+        return token, user
+    return False, False

@@ -113,4 +113,13 @@ input[type=number]::-webkit-outer-spin-button {
         </div>
     </div> -->
 
+    <script>
+      window.onload = (event) => {
+        {% if error == 400 %}
+          alert('Something went wrong')
+        {% elif error == 403 %}
+          alert('Invalid username/password')
+        {% endif %}
+      };
+    </script>
 </div>

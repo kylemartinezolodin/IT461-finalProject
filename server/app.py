@@ -24,9 +24,10 @@ app.register_blueprint(ItemRouter.handler())
 def login():
     data = request.json
     if 'username' in data and 'password' in data:
-        token = auth_login(data['username'], data['password'])
+        token, user = auth_login(data['username'], data['password'])
         if token is not False:
-            return jsonify({'token': token})
+            return jsonify({'token': token, 'user': user})
+    print("Invalid username or password")
     return jsonify({'message': 'Invalid username or password'}), 403
 
 @app.route('/api/v1/login')
@@ -42,4 +43,4 @@ def verify_token():
 
 if __name__ == "__main__":
     app.run(debug=False, host='0.0.0.0',port=8081)
-    # app.run(debug=True,host='0.0.0.0',port=8080)
+    # app.run(debug=True,host='0.0.0.0',port=8081)

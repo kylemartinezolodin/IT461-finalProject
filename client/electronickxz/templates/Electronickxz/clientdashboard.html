@@ -3,10 +3,7 @@
 <title>Electronickxz</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <!-- custom css -->
 <link rel="stylesheet" type="text/css" href="{% static 'melody/css/style.css' %}">
@@ -15,7 +12,6 @@
 <!-- css for datatable -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
-<link src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js">
 <style>.dropdown-button{cursor: pointer; border: none;}.dropdown-container {display: none; background-color: #262626;}
         .dropdown-container:active{background-color: #262626;}.logo-container{ width: 50px; height: 50px; margin-left: 3%;}
         .line{ height:2px;border-width:0;color:gray;background-color:gray;}a.buttonAdd:active, a.buttonAdd:hover {text-decoration: none;color: white; background-color: #6b22ff;}
@@ -162,7 +158,7 @@ thead{
                         <td class="center-txt">{{item.price}}</th>
                         <td class="center-txt" id="link-{{item.id}}" hidden>{{item.link}}</td>
                         <td class="center-txt">
-                            <a data-toggle="modal" href="#" class="addToCart" onclick="displayItem({{item.id}})" data-target="#viewModal"><i class="material-icons" style="color: black; font-size: 26px;">&#xe854;</i></a>
+                            <a data-toggle="modal" href="#" class="addToCart" onclick="displayItem({{item.id}})" ><i class="material-icons" style="color: black; font-size: 26px;">&#xe854;</i></a>
                             <!-- <a data-toggle="modal" href="#" class="button" data-target="#modalDelete-{{song.id}}"><i class="material-icons" style="color: red; font-size:28px;">&#xe92b;</i></a> -->
                         </td>
                     </tr>
@@ -178,10 +174,10 @@ thead{
                 <a type="button" class="btn-Add" onclick="changePage('{{metadata.links.next}}')" id="goNext"><span class="txt">Next</span><i class="material-icons" style="font-size: 18px;">&#xe5c8;</i></a>
                 {% endif %}
             </div>
-              <!--end of datatable  -->
+            <!--end of datatable  -->
             
             <!-- modal for View -->
-            <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal" id="viewModal" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header modal-view" style="background-color: #4D6AFF;">
@@ -223,7 +219,7 @@ thead{
                     </div>
                     <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-outline-secondary shadow" data-dismiss="modal">Close</button>
-                    <button type="submit" id="addToCartbtn"  name="addToCartbtn" class="btn btn-outline-primary shadow">Add to Cart</button>
+                    <button type="button" id="addToCartbtn"  name="addToCartbtn" class="btn btn-outline-primary shadow" onclick="submitModal()">Add to Cart</button>
                     </div>
                 </div>
                 </form>
@@ -236,11 +232,20 @@ thead{
 </div>
 <!-- end of body -->           
 {% block footerinclude %}
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    <script type="text/javascript" src="{% static 'melody/js/datatable.js' %}"></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script> -->
+    
+    <!-- <script src='https://kit.fontawesome.com/a076d05399.js'></script> -->
+    <!-- <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script> -->
+    <!-- <script type="text/javascript" src="{% static 'melody/js/datatable.js' %}"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
         var dropdown = document.getElementsByClassName("dropdown-button");
         var i;
@@ -269,7 +274,7 @@ thead{
             console.log(window.location)
 
             url = new URL(window.location.origin)
-            url.searchParams.set('token', param["token"]);
+            // url.searchParams.set('token', param["token"]);
             url.searchParams.set('offset', param["offset"]);
             window.location = url
             // window.location.pathname = "/\?token=" +param["token"]
@@ -277,28 +282,50 @@ thead{
         }
 
         function displayItem(id){
-            // $('#viewModal').modal('show')
+            console.log($('#viewModal'))
+            $('#viewModal').modal('toggle')
             param = parseGETfromUrl(window.location.href)
             $.ajax({
                 type: "get",
-                url: "http://127.0.0.1:8081/api/v1/items/"+id+"?token="+param["token"],
-                dataType: "json",
+                url: "http://127.0.0.1:8080/session/token",
+                dataType: "text",
+                // async: true,
                 // dataType: "jsonp",
                 // crossDomain: true,
-                success: function( result ) {
-                    console.log(result)
-                    // console.log("wad" +id)
-                    document.querySelector("#modalProductName").value = result["name"];
-                    document.querySelector("#modalProductPrice").value = result["price"];
-                    document.querySelector("#modalProductQuantity").value = result["quantity"];
-                    // $('#viewModal').modal('show')
+                success: function( token ) {
+
+                    $.ajax({
+                        type: "get",
+                        url: "http://127.0.0.1:8081/api/v1/items/"+id+"?token="+token,
+                        dataType: "json",
+                        // async: true,
+                        // dataType: "jsonp",
+                        // crossDomain: true,
+                        success: function( result ) {
+                            console.log(result)
+                            // console.log("wad" +id)
+                            document.querySelector("#modalProductName").value = result["name"];
+                            document.querySelector("#modalProductPrice").value = result["price"];
+                            document.querySelector("#modalProductQuantity").value = result["quantity"];
+                            // $('#viewModal').modal('show')
+                        }
+                    });
                 }
             });
-        }
-        $('#viewModal').on('show.bs.modal', function (event) {
-            console.log("wad" +id)
-        })
 
+            console.log("mawaaaaaa")
+
+        }
+        // $('#viewModal').on('show.bs.modal', function (event) {
+        //     console.log("wad" +id)
+        // })
+
+        // console.log("token: " +sessionStorage.getItem('token'))
+
+        function submitModal(){
+            console.log("tae")
+            $('#myModal').modal('hide')
+        }
     </script>
     
 {% endblock footerinclude %}

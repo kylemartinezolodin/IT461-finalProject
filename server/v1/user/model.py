@@ -30,8 +30,8 @@ class UserModel():
             user['password'] = hashlib.md5(user['password'].encode()).hexdigest() # hash the password
             # hmac.new('key', 'msg').hexdigest() # use when above is inconsistent (di ko sure sa consistency sa private key) FROM:https://stackoverflow.com/questions/697134/how-to-set-the-crypto-key-for-pythons-md5-module
 
-            sql = "INSERT INTO users(username, password, type) VALUES(%s, %s, %s)"
-            queries.append({"sql": sql, "bind": (user['username'], user['password'], user['type'])})
+            sql = "INSERT INTO users(username, password, type, fname, lname) VALUES(%s, %s, %s, %s, %s)"
+            queries.append({"sql": sql, "bind": (user['username'], user['password'], user['type'], user["fname"], user["lname"])})
         db = Db.get_instance()
         result = db.transactional(queries)
         return users
@@ -81,8 +81,8 @@ class UserModel():
             if "password" in user:
                 user['password'] = hashlib.md5(user['password'].encode()).hexdigest() # hash the password
             
-                sql = "UPDATE users SET username = %s, password = %s, type = %s WHERE id = %s"
-                queries.append({"sql": sql, "bind": (user['username'], user['password'], user['type'], user['id'])})
+                sql = "UPDATE users SET username = %s, password = %s, type = %s, fname = %s, lname = %s WHERE id = %s"
+                queries.append({"sql": sql, "bind": (user['username'], user['password'], user['type'], user['id'], user['fname'], user['lname'])})
             else:
                 sql = "UPDATE users SET username = %s WHERE id = %s"
                 queries.append({"sql": sql, "bind": (user['username'], user['id'])})
