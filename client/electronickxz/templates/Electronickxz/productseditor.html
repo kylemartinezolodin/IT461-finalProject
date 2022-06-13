@@ -129,13 +129,14 @@ thead{
             <p align="right">
                 <a type="button" class="btn-Add" href="{% url 'electronickxz:productRegister_view' %}"><i class="material-icons" style="font-size: 18px;">&#xeb88;</i><span class="txt">Check cart</span></a> 
             </p>
-            <table class="table table-hover shadow" id="data-table">
+            <table class="table table-hover shadow" id="">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Product Name</th>
                         <th scope="col">Price)</th>
-                        <th scope="col">Add to Cart</th>
+                        <th scope="col">Update or Delete</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -145,7 +146,8 @@ thead{
                         <td class="center-txt">{{items.name}}</td>
                         <td class="center-txt">{{items.price}}</td>
                         <td class="center-txt">
-                            <a data-toggle="modal" href="#" class="addToCart"><i class="material-icons" style="color: black; font-size: 26px;">&#xe854;</i></a>
+                            <a data-toggle="modal" href="#" onlclick="displayItem()" class="addToCart"><i class="material-icons" style="color: black; font-size: 26px;">&#xe88e;</i></a>
+                            <a data-toggle="modal" href="#" onclick="onlickDeleteItem()" class="deleteItem"><i class="material-icons" style="color: red; font-size: 26px;">&#xe872;</i></a>
                         </td>
                     </tr>
                     <!-- modal for View -->
@@ -265,6 +267,15 @@ thead{
                 </tbody>
             </table>  
              <!--end of datatable  -->
+             <div class="table">
+                {% if metadata.links.previous is not null %}
+                <a type="button" class="btn-Add"  onclick="changePage('{{metadata.links.previous}}')" id="goPrevious"><i class="material-icons" style="font-size: 18px;">&#xe5c4;</i><span class="txt">Prev</span></a>
+                {% endif %}
+
+                {% if metadata.links.next is not null %}
+                <a type="button" class="btn-Add" onclick="changePage('{{metadata.links.next}}')" id="goNext"><span class="txt">Next</span><i class="material-icons" style="font-size: 18px;">&#xe5c8;</i></a>
+                {% endif %}
+            </div>
         </div>
         <!-- end of content -->
     </div>
@@ -290,6 +301,64 @@ thead{
           dropdownContent.style.display = "block";
           }
           });
+        }
+        function onlickDeleteItem(){
+            alert("DELETE");
+        }
+        function parseGETfromUrl ( query = location.search.substring( 1 ) ) {
+            query = query.slice(query.indexOf("?"));
+            let parameters = {};
+            for ( const [ name, value ] of new URLSearchParams( query ) ) parameters[name] = value;
+            return parameters;
+        }
+
+        function changePage(url) {
+            param = parseGETfromUrl( url )
+            console.log(param);
+            console.log(window.location)
+
+            url = new URL(window.location.href)
+            // url.searchParams.set('token', param["token"]);
+            url.searchParams.set('offset', param["offset"]);
+            window.location = url
+            // window.location.pathname = "/\?token=" +param["token"]
+
+        }
+
+        function displayItem(id){
+            console.log($('#viewModal'))
+            $('#viewModal').modal('toggle')
+            param = parseGETfromUrl(window.location.href)
+            $.ajax({
+                type: "get",
+                url: "http://127.0.0.1:8080/session/token",
+                dataType: "text",
+                // async: true,
+                // dataType: "jsonp",
+                // crossDomain: true,
+                success: function( token ) {
+
+                    $.ajax({
+                        type: "get",
+                        url: "http://127.0.0.1:8081/api/v1/items/"+id+"?token="+token,
+                        dataType: "json",
+                        // async: true,
+                        // dataType: "jsonp",
+                        // crossDomain: true,
+                        success: function( result ) {
+                            console.log(result)
+                            // console.log("wad" +id)
+                            document.querySelector("#modalProductName").value = result["name"];
+                            document.querySelector("#modalProductPrice").value = result["price"];
+                            document.querySelector("#modalProductQuantity").value = result["quantity"];
+                            // $('#viewModal').modal('show')
+                        }
+                    });
+                }
+            });
+
+            console.log("mawaaaaaa")
+
         }
     </script>
 {% endblock footerinclude %}

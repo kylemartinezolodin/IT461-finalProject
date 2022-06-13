@@ -1,10 +1,10 @@
-@host = http://127.0.0.1:8081/api/v1/items
-@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOjEsImV4cCI6MTY1NTE4NzgzM30.MDrl8nkh-iD73wqm8OgdVYQZrCoIuG5x8vpo8UvwPBY
+@host = http://127.0.0.1:5000/api/v1/items
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOjEsImV4cCI6MTY1NTIyMDQwN30.FbikUUcZQ96-ovIbaKzDuDNjxfw_D09omtVUMmKFNmY
 ####
-GET http://127.0.0.1:8081/api/v1/login HTTP/1.1
+GET http://127.0.0.1:5000/api/v1/login HTTP/1.1
 
 ### POST
-POST http://127.0.0.1:8081/api/v1/login HTTP/1.1
+POST http://127.0.0.1:5000/api/v1/login HTTP/1.1
 Content-Type: application/json
 
 {

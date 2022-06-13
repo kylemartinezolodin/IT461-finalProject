@@ -90,38 +90,20 @@ class IndexClientView(View):
 
 		
 class EditorProductsView(View):
-	def get(self, request):
-		context={
-			'data' : [
-				{
-				"id": 420,
-				"name": "kong",
-				"price": 69.69,
-				"link": "google.com"
-				},
-				{
-				"id": 421,
-				"name": "Jong",
-				"price": 69.69,
-				"link": "youtube.com"
-				},
-				{
-				"id": 422,
-				"name": "Bong",
-				"price": 69.69,
-				"link": "facebook.com"
-				},
-			],
-			"metadata":{
-				"links":{
-					"curr":"google.com",
-					"next":"google.com",
-					"prev":"google.com",
-				}
-			},
-			'user' : {"id": 69, "username": "Mongo", "type": "Standard"},
-		}
-		return render(request, 'Electronickxz/productseditor.html', context)
+		def get(self, request):
+			if 'token' in request.session:
+				offset = request.GET["offset"] if "offset" in request.GET else 0
+				context = requests.get(str(DB_HOST)+'/items/?fields=&offset='+str(offset)+'&limit=4&token='+request.session["token"]).json()
+
+				data = []
+				for item in context["data"]:
+					item["link"] = "google.com" #str(DB_HOST) +'/?'
+					data.append(item)
+				context["data"] = data
+				context["user"] = {"id": request.session["userID"], "username": request.session["userFName"], "type": request.session["userType"]}
+				print("random")
+				print(context)
+				return render(request, 'Electronickxz/productseditor.html', context)
 
 
 class EditorProductsRegistrationView(View):
@@ -131,23 +113,19 @@ class EditorProductsRegistrationView(View):
 		
 class EditorUsersView(View):
 	def get(self, request):
-		context={
-			'data' : [
-				{"id": 1,"name": "Kiko"},
-				{"id": 2,"name": "Mereno"},
-				{"id": 3,"name": "Jojo"},
-				{"id": 4,"name": "Binay"},
-			],
-			"metadata":{
-				"links":{
-					"curr":"google.com",
-					"next":"google.com",
-					"prev":"google.com",
-				}
-			},
-			'user' : {"id": 69, "username": "Mongo", "type": "Standard"},
-		}
-		return render(request, 'Electronickxz/userseditor.html', context)
+			if 'token' in request.session:
+				offset = request.GET["offset"] if "offset" in request.GET else 0
+				context = requests.get(str(DB_HOST)+'/users/?fields=&offset='+str(offset)+'&limit=4&token='+request.session["token"]).json()
+				
+				data = []
+				for item in context["data"]:
+					item["link"] = "google.com" #str(DB_HOST) +'/?'
+					data.append(item)
+				context["data"] = data
+				context["user"] = {"id": request.session["userID"], "username": request.session["userFName"], "type": request.session["userType"]}
+
+				print(context)
+			return render(request, 'Electronickxz/userseditor.html', context)
 
 
 class CheckoutView(View):
