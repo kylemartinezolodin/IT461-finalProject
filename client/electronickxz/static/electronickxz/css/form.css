@@ -1,0 +1,30 @@
+.register{
+    background-image: linear-gradient(to right, #400080 , #A64DFF);
+    margin-top: 3%;
+    padding: 3%;
+}
+
+.register-left{
+    text-align: center;
+    color: white;
+    margin-top: 4%;
+}
+
+.register-right{
+    background: #f8f9fa;
+    /* background: #f7f4f4; */
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+}
+
+.register .register-form{
+    margin-top: 10%;
+    padding: 10%;
+}
+
+.register-heading{
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: -15%;
+    color: #495057;
+}

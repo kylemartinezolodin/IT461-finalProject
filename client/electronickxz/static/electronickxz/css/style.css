@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+
+.navbar{
+    text-transform: uppercase;
+    color: white;
+    background-color: #8F00FF;
+    letter-spacing: 3px;
+}
+
+.nav-link{
+    color: white;
+    margin-right: 20px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* .margin{
+    margin-left: 150px;
+} */
+
+.navbar-nav>li.active>a,
+.navbar-nav>li>a:hover,
+.navbar-nav>li>a:focus{
+    color: #FFFF00;
+    /* text-shadow: 2px 2px 4px #000000; */
+}
+
+.navbar-brand:hover{
+    color: #FFFF00;
+}
+
+.shadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.container-space{
+    margin-top: 100px;
+}
+
+.modal-header{
+    color: red;
+    /* background-color: red; */
+}
+
+.modal-title{
+    text-align: center;
+}
+
+.modal-view{
+    color: blue;
+}
+
+.btn {
+    /* background-color: #4CAF50; Green */
+    padding: 10px 27px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.buttonAdd{
+    padding: 12px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    color: white;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+a.buttonAdd:active, a.buttonAdd:hover {
+	position:relative;
+    top:1px;
+    text-decoration: none;
+    color: white;
+}
+
+.bg{
+    /* background-color: #8F00FF; */
+    background-image: linear-gradient(to bottom right, red, yellow);
+}
+
+.box{
+    background-color: white;
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    margin-top: 100px;
+}
