@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
 from django.views.generic import View
 
+from App.settings import DB_HOST
+import requests # for http requests
+
 			
 class LoginView(View):
 	def get(self, request):
@@ -12,6 +15,31 @@ class RegistrationView(View):
 		
 
 class IndexClientView(View):
+	def get(self, request):
+		if 'token' not in request.GET.keys():
+			context = requests.get(str(DB_HOST)+'/items/?fields=&offset=0&limit=4&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOjEsImV4cCI6MTY1NTE4NzgzM30.MDrl8nkh-iD73wqm8OgdVYQZrCoIuG5x8vpo8UvwPBY').json()
+			data = []
+			for item in context["data"]:
+				item["link"] = "google.com" #str(DB_HOST) +'/?'
+				data.append(item)
+			context["data"] = data
+			context["user"] = {"id": 69, "username": "Mongo", "type": "Standard"}
+			print(context)
+		else:
+			context = requests.get(str(DB_HOST)+'/items/?fields=&offset='+request.GET["offset"]+'&limit=4&token='+request.GET["token"]).json()
+			data = []
+			for item in context["data"]:
+				item["link"] = "google.com" #str(DB_HOST) +'/?'
+				data.append(item)
+			context["data"] = data
+			context["user"] = {"id": 69, "username": "Mongo", "type": "Standard"}
+		return render(request, 'Electronickxz/clientdashboard.html', context)
+	
+	def post(self, request):
+		return redirect('electronickxz:checkout_view')
+
+		
+class EditorProductsView(View):
 	def get(self, request):
 		context={
 			'data' : [
@@ -43,41 +71,6 @@ class IndexClientView(View):
 			},
 			'user' : {"id": 69, "username": "Mongo", "type": "Standard"},
 		}
-		return render(request, 'Electronickxz/clientdashboard.html', context)
-	
-	def post(self, request):
-		return redirect('electronickxz:checkout_view')
-
-		
-class EditorProductsView(View):
-	def get(self, request):
-		context={
-			'data' : [
-				{
-				"id": 420,
-				"name": "kong",
-				"price": 69.69
-				},
-				{
-				"id": 421,
-				"name": "Jong",
-				"price": 69.69
-				},
-				{
-				"id": 422,
-				"name": "Bong",
-				"price": 69.69
-				},
-			],
-			"metadata":{
-				"links":{
-					"curr":"google.com",
-					"next":"google.com",
-					"prev":"google.com",
-				}
-			},
-			'user' : {"id": 69, "username": "Mongo", "type": "Standard"},
-		}
 		return render(request, 'Electronickxz/productseditor.html', context)
 
 
@@ -97,9 +90,9 @@ class EditorUsersView(View):
 			],
 			"metadata":{
 				"links":{
-					"curr":"http://google.com",
-					"next":"http://google.com",
-					"prev":"http://google.com",
+					"curr":"google.com",
+					"next":"google.com",
+					"prev":"google.com",
 				}
 			},
 			'user' : {"id": 69, "username": "Mongo", "type": "Standard"},

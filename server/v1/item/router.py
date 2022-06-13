@@ -5,7 +5,7 @@ from v1.auth import jwt_token_required
 class ItemRouter():
     @staticmethod
     def handler():
-        app = Blueprint('items', __name__, url_prefix='/v1/items')
+        app = Blueprint('items', __name__, url_prefix='/api/v1/items')
         app.before_request(jwt_token_required)
         controller = ItemController()
         app.add_url_rule('/', methods=['POST'], view_func=controller.post)

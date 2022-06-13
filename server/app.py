@@ -5,22 +5,22 @@ from v1.user.router import UserRouter
 from v1.item.router import ItemRouter
 from v1.auth import login as auth_login, verify_token as auth_verify_token
 from db import Db
-# from flask_cors import CORS
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'I/L0ve/CIT-U'
 app.config['CORS_HEADERS'] = ['Content-Type', 'authorization']
 
-#CORS(app)
-# CORS(app, resources={r"*": {"origins": [
-#     'http://127.0.0.1:3000',
-#     'http://localhost:3000',
-# ]}},  supports_credentials=True)
+CORS(app)
+CORS(app, resources={r"*": {"origins": [
+    'http://127.0.0.1:8080',
+    'http://localhost:8080',
+]}},  supports_credentials=True)
 
 app.register_blueprint(UserRouter.handler())
 app.register_blueprint(ItemRouter.handler())
 
-@app.route('/v1/login', methods=['POST'])
+@app.route('/api/v1/login', methods=['POST'])
 def login():
     data = request.json
     if 'username' in data and 'password' in data:
@@ -29,11 +29,11 @@ def login():
             return jsonify({'token': token})
     return jsonify({'message': 'Invalid username or password'}), 403
 
-@app.route('/v1/login')
+@app.route('/api/v1/login')
 def home():
     return jsonify({'message': 'hello world'})
 
-@app.route('/v1/verify-token')
+@app.route('/api/v1/verify-token')
 def verify_token():
     token = request.args.get('token')
     if not auth_verify_token(token):
@@ -41,5 +41,5 @@ def verify_token():
     return jsonify({'ok': 'Token is valid'})
 
 if __name__ == "__main__":
-    app.run(debug=False, host='0.0.0.0',port=8080)
+    app.run(debug=False, host='0.0.0.0',port=8081)
     # app.run(debug=True,host='0.0.0.0',port=8080)

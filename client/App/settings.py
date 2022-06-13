@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'electronickxz'
+    'electronickxz',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +122,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+from django.core.management.commands.runserver import Command as runserver
+runserver.default_port = "8080"
+
+DB_HOST = "http://127.0.0.1:8081/api/v1"
