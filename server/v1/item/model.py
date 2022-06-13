@@ -8,7 +8,7 @@ class ItemModel():
         for item in items:
             if not isinstance(item, dict):
                 continue
-            if not ('id' in item and 'name' in item and 'quantity' in item and 'price in item'):
+            if not ('id' in item and 'name' in item and 'quantity' in item and 'price' in item):
                 continue
             clean_items.append(item)
         return clean_items

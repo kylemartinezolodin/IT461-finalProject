@@ -3,6 +3,7 @@ from flask import Blueprint
 import json
 from v1.user.router import UserRouter
 from v1.item.router import ItemRouter
+from v1.user_cart.router import User_CartRouter
 from v1.auth import login as auth_login, verify_token as auth_verify_token
 from db import Db
 from flask_cors import CORS
@@ -19,6 +20,7 @@ CORS(app, resources={r"*": {"origins": [
 
 app.register_blueprint(UserRouter.handler())
 app.register_blueprint(ItemRouter.handler())
+app.register_blueprint(User_CartRouter.handler())
 
 @app.route('/api/v1/login', methods=['POST'])
 def login():

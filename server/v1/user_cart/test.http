@@ -1,0 +1,142 @@
+@host = http://127.0.0.1:8081/api/v1/users_cart
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOjEsImV4cCI6MTY1NTIyMjEwNX0.Vs11EL6LYo2OTKKTjNdxjE0s9xs1oxj-S0Tqouj27s0
+####
+GET http://127.0.0.1:8081/api/v1/login HTTP/1.1
+
+### POST
+POST http://127.0.0.1:8081/api/v1/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+### Get all users_cart
+GET {{host}}/?token={{token}} HTTP/1.1
+
+### Get v2
+GET {{host}}/3?fields=&offset=0&limit=2&token={{token}} HTTP/1.1
+
+### Create new users_cart
+POST {{host}}/?token={{token}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": 0,
+    "user_id": 3,
+    "item_id": 2
+}
+
+
+### Create new users_cart
+POST {{host}}/?token={{token}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": 0,
+    "name": "Soap",
+    "quantity": 15,
+    "price": 10.50
+}
+
+### Create new users_cart
+POST {{host}}/?token={{token}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": 0,
+    "name": "Pen",
+    "quantity": 30,
+    "price": 8.50
+}
+
+### Create new users_cart
+POST {{host}}/?token={{token}} HTTP/1.1
+Content-Type: application/json
+
+[
+
+    {
+    "id": 1,
+    "user_id": 4,
+    "item_id": 3
+    },
+    {
+    "id": 2,
+    "user_id": 3,
+    "item_id": 4
+    },
+    {
+    "id": 3,
+    "user_id": 3,
+    "item_id": 5
+    },
+    {
+    "id": 4,
+    "user_id": 3,
+    "item_id": 6
+    },
+    {
+    "id": 5,
+    "user_id": 3,
+    "item_id": 7
+    },
+    {
+    "id": 6,
+    "user_id": 3,
+    "item_id": 8
+    },
+    {
+    "id": 7,
+    "user_id": 3,
+    "item_id": 9
+    },
+    {
+    "id": 8,
+    "user_id": 3,
+    "item_id": 10
+    },
+    {
+    "id": 9,
+    "user_id": 3,
+    "item_id": 11
+    }
+]
+
+### Update users_cart
+PUT {{host}}/?token={{token}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": 2,
+    "name": "Toothpaste",
+    "quantity": 5,
+    "price": 9.5
+}
+
+
+### Delete users_cart
+DELETE {{host}}/?token={{token}} HTTP/1.1
+Content-Type: application/json
+
+[2, 1]
+
+
+
+### Get single item
+GET {{host}}/3?token={{token}} HTTP/1.1
+
+
+### Update sing item
+PUT {{host}}/4?token={{token}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "id": 3, 
+  "name": "Whitie"
+}
+
+
+### Delete single user_cart
+DELETE {{host}}/0?token={{token}} HTTP/1.1
