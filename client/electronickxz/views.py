@@ -53,7 +53,9 @@ class RegistrationView(View):
 		username = request.POST.get("username")
 		password = request.POST.get("password")
 
-		response = requests.post(str(DB_HOST)+'/users/?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOjEsImV4cCI6MTY1NTIwMDI0Mn0.ZyO9v0O8oKijXGDrX5YMFVr2snfzYSVd_2lL8roQlPE',
+		
+		response = requests.post(str(DB_HOST)+'/login', json={"username": "admin","password": "admin"}).json()
+		response = requests.post(str(DB_HOST)+'/users/?token='+response["token"],
 			json={
 				"id": 0,
 				"username": username,
@@ -74,7 +76,7 @@ class RegistrationView(View):
 class IndexClientView(View):
 	def get(self, request):
 		if 'token' not in request.session:
-			response = requests.post(str(DB_HOST)+'/login', json={"username": "guest","password": "guest"}).json()
+			response = requests.post(str(DB_HOST)+'/login', json={"username": "admin","password": "admin"}).json()
 			print("response")
 			print(response["token"])
 			context = requests.get(str(DB_HOST)+'/items/?fields=&offset=0&limit=4&token='+response["token"]).json()
