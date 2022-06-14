@@ -12,7 +12,7 @@ class User_CartRouter():
         app.add_url_rule('/', methods=['GET'], view_func=controller.get)
         app.add_url_rule('/', methods=['PUT'], view_func=controller.put)
         app.add_url_rule('/', methods=['DELETE'], view_func=controller.delete)
-        app.add_url_rule('/<user_cart_id>', methods=['GET'], view_func=controller.get)
+        app.add_url_rule('/<user_id>', methods=['GET'], view_func=controller.get)
         app.add_url_rule('/<user_cart_id>', methods=['PUT'], view_func=controller.put)
         app.add_url_rule('/<user_cart_id>', methods=['DELETE'], view_func=controller.delete)
         return app

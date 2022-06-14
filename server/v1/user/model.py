@@ -82,13 +82,14 @@ class UserModel():
                 user['password'] = hashlib.md5(user['password'].encode()).hexdigest() # hash the password
             
                 sql = "UPDATE users SET username = %s, password = %s, type = %s, fname = %s, lname = %s WHERE id = %s"
-                queries.append({"sql": sql, "bind": (user['username'], user['password'], user['type'], user['id'], user['fname'], user['lname'])})
+                queries.append({"sql": sql, "bind": (user['username'], user['password'], user['type'], user['fname'], user['lname'], user['id'])})
             else:
                 sql = "UPDATE users SET username = %s WHERE id = %s"
                 queries.append({"sql": sql, "bind": (user['username'], user['id'])})
                 
         db = Db.get_instance()
         db.transactional(queries)
+        # db.execute(queries[])
         return users
 
     def delete(self, users):

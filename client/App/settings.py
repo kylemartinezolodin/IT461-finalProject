@@ -126,4 +126,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 from django.core.management.commands.runserver import Command as runserver
 runserver.default_port = "8080"
 
-DB_HOST = "http://127.0.0.1:5000/api/v1"
+DB_HOST = "http://127.0.0.1:8081/api/v1"

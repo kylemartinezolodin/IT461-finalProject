@@ -27,18 +27,21 @@ class User_CartController(BaseController):
             return make_response(jsonify({"error": "Item id not found."}), 404)
         return user_cart
 
-    def get(self, user_cart_id=None):
+    def get(self, user_id):
+        if user_id is None:
+            return make_response(jsonify({"error": "Invalid request. Requireds user_id."}), 400)
         filters = {}
         if 'fields' in request.args:
             filters['fields'] = request.args['fields'].split(',')
-        if user_cart_id is not None:
-            user_cart = self.check(user_cart_id, filters)
-            if not isinstance(user_cart, dict):
-                return {"data":user_cart}
-            return jsonify(user_cart)
+        # if user_id is not None:
+        #     user_cart = self.check(user_id, filters)
+        #     if not isinstance(user_cart, dict):
+        #         return {"data":user_cart}
+        #     return jsonify(user_cart)
         filters['offset'] = int(request.args['offset']) if 'offset' in request.args else 0
         filters['limit'] = int(request.args['limit']) if 'limit' in request.args else 5
-        users_cart = self._instance.read(filters)
+        users_cart = self.check(user_id, filters)
+        # users_cart = self._instance.read(filters)
         total = self._instance.read(filters, True)
         return jsonify({
             'metadata': {
@@ -64,9 +67,6 @@ class User_CartController(BaseController):
         return jsonify(self._instance.update(request.json))
 
     def delete(self, user_cart_id=None):
-        if user_cart_id is not None:
-            user_cart = self.check(user_cart_id)
-            if not isinstance(user_cart, dict):
-                return user_cart
-            return jsonify(self._instance.delete(user_cart_id))
-        return jsonify(self._instance.delete(request.json))
+        if user_cart_id is None:
+            return jsonify(self._instance.delete(request.json))
+        return jsonify(self._instance.delete(user_cart_id))

@@ -8,7 +8,7 @@ class ItemModel():
         for item in items:
             if not isinstance(item, dict):
                 continue
-            if not ('id' in item and 'name' in item and 'quantity' in item and 'price' in item):
+            if not ('id' in item and 'name' in item and 'quantity' in item):
                 continue
             clean_items.append(item)
         return clean_items
@@ -56,6 +56,8 @@ class ItemModel():
             row = db.fetchone(sql)
             return row['total'] if row else 0
         else:
+            print("sql")
+            print(sql)
             return db.fetchall(sql)
 
     def update(self, items):
@@ -64,6 +66,8 @@ class ItemModel():
         clean_items = self.sanitize(items)
         if len(items) != len(clean_items):
             return False
+        print("chongkong")
+        print(items)
         queries = []
         for item in clean_items:
             sql = "UPDATE items SET name = %s, quantity = %s, price = %s WHERE id = %s"

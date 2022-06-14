@@ -1,6 +1,6 @@
 {% load static %}
 {% block headerinclude %}
-    <title>Melody</title>
+    <title>Electronickxz</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -50,48 +50,34 @@
 
                     <!-- right side of the registration form -->
                     <div class="col-md-9 register-right">
-                        <h3 class="register-heading">Song Registration</h3>
+                        <h3 class="register-heading">Product Registration</h3>
                         <!-- container -->
                         <div class="row register-form">
                             <!-- left side of the form -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Song Title:</label>
-                                    <input name ="songtitle" id="songtitle" type="text" placeholder="Song Title" class="form-control">
-                                    <span id="reqSongTitle" class="validate"></span>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="form-group col">
+                                        <label>Product Name:</label>
+                                        <input name ="name" id="modalName" type="text" placeholder="Product" value="Product" class="form-control">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Genre(s):</label>
-                                    <input name ="genre" id="genre" type="text" class="form-control"   placeholder="Genre">
-                                    <span id="reqGenre" class="validate"></span>
+                                <div class="row">
+                                    <div class="form-group col">
+                                        <label>Price:</label>
+                                        <input id="modalPrice" type="text" pattern="\d*.\d*" placeholder="1.0" step="0.01" class="form-control" name="price" value="1.0" min="1" maxlength="10">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Song Writer(s):</label>
-                                    <textarea name ="songwriter" class="form-control" rows="2" placeholder="Song Writer(s)"></textarea>
-                                </div> 
+                                <div class="row">
+                                    <div class="form-group col">
+                                        <label>Quantity:</label>
+                                        <input id="modalQuantity" type="text" pattern="\d*" class="form-control" placeholder="1" name="quantity" value="1"  min="1" maxlength="10">
+                                    </div> 
+                                </div>
+                                <div class="row">
+                                    <a type="button" class="btn btn-secondary" style="margin-top: 2%;" href="{% url 'electronickxz:editorProduct_view' %}">Cancel</a>
+                                    <button type="submit" class="btn buttonAdd" style="margin-top: 2%;">Register</button>
+                                </div>
                             </div>
-                            <!-- left side of the form, ends here -->
-
-                            <!-- right side of the form -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Artist(s):</label>
-                                    <input name ="artist" type="artist" id="artist" class="form-control" placeholder="Artist(s)">
-                                    <span id="reqArtist" class="validate"></span>
-                                </div>                                
-                                <div class="form-group">
-                                    <label>Date Release:</label>
-                                    <input name ="dateRelease" type="date" class="form-control" id="dateRelease">
-                                    <span id="reqDate" class="validate"></span>
-                                </div>                               
-                                <div class="form-group">
-                                    <label>Producer(s):</label>
-                                    <textarea name ="producer" class="form-control" rows="2" placeholder="Producer(s)"></textarea>
-                                </div>    
-                            </div>
-                            <!-- right side of the form, ends here -->
-                            <a type="button" class="btn btn-secondary" style="margin-top: 2%;" href="{% url 'electronickxz:editorProduct_view' %}">Cancel</a>
-                            <button type="submit" class="btn buttonAdd" style="margin-top: 2%;">Register</button>
                         </div>
                         <!-- end of container -->
                     </div>

@@ -11,5 +11,6 @@ urlpatterns=[
     path('editor/users', views.EditorUsersView.as_view(), name="editorUser_view"),
     path('checkout', views.CheckoutView.as_view(), name="checkout_view"),
     path('payment', views.PaymentView.as_view(), name="payment_view"),
-    re_path(r'^session/(?P<key>[^/]+)$', views.SessionVarView.as_view(), name='session-var')
+    re_path(r'^session/(?P<key>[^/]+)$', views.SessionVarView.as_view(), name='session-var'),
+    path('logout', views.LogoutView.as_view(), name="logout_view"),
 ]

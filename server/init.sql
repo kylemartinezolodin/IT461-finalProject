@@ -6,7 +6,7 @@ CREATE TABLE items(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(200) NOT NULL,
     quantity INT NOT NULL,
-    price float(5,2) NOT NULL,
+    price float(10,2) NOT NULL,
     PRIMARY KEY (id),
     INDEX (name)
 );
@@ -22,5 +22,15 @@ CREATE TABLE users(
     INDEX (username)
 );
 
+
+CREATE TABLE users_cart(
+    id INT NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    item_id INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE
+);
+
 INSERT INTO users (username, password, type, fname, lname) VALUES ('admin', 'admin', 'editor', 'admin', 'admin');
-INSERT INTO users (username, password, type, fname, lname) VALUES ('guest', 'guest', 'guest', 'guest', 'guest');
+INSERT INTO users (username, password, type, fname, lname) VALUES ('guest', MD5('guest'), 'guest', 'guest', 'guest');

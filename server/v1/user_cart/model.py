@@ -33,30 +33,32 @@ class User_CartModel():
         offset = 0
         limit = 5
         if filters is not None:
-            if 'fields' in filters:
-                tmp_fields = []
-                for field in filters['fields']:
-                    if field in ['id', 'user_id']:
-                        tmp_fields.append(field)
-                if len(tmp_fields) > 0:
-                    fields = tmp_fields
+            cols = 'COUNT(*) AS total' if count_only else ','.join(fields)
+            sql = "SELECT " + cols + " FROM users_cart "
+            bind = ()
+            # if 'fields' in filters:
+            #     tmp_fields = []
+            #     for field in filters['fields']:
+            #         if field in ['id', 'user_id']:
+            #             tmp_fields.append(field)
+            #     if len(tmp_fields) > 0:
+            #         fields = tmp_fields
             if 'id' in filters:
-                sql = "SELECT " + ','.join(fields) + " FROM users_cart WHERE user_id = %s"
-                user_cart = db.fetchall(sql, filters['id'])
-                return user_cart
+                sql += " WHERE user_id = " +filters['id']
+                # sql += " WHERE user_id = %s "
+                # bind = (*bind, filters['id']) # append by tuple unpacking
             if 'offset' in filters:
                 offset = int(filters['offset'])
             if 'limit' in filters:
                 limit = int(filters['limit'])
-        cols = 'COUNT(*) AS total' if count_only else ','.join(fields)
-        sql = "SELECT " + cols + " FROM users_cart"
-        # if not count_only:
-        #     sql += " ORDER BY name LIMIT " + str(offset) + ", " + str(limit)
+        if not count_only:
+            sql += " LIMIT " + str(offset) + ", " + str(limit)
         if count_only:
             row = db.fetchone(sql)
             return row['total'] if row else 0
         else:
             return db.fetchall(sql)
+            # return db.fetchall(sql, bind)
 
     def update(self, users_cart):
         if not isinstance(users_cart, (list, tuple)):

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <!-- custom css -->
 <!-- Jeffuu CSS and scripts -->
@@ -17,13 +17,13 @@
   <link href="{% static 'melody/css/gsdk-bootstrap-wizard.css' %}" rel="stylesheet">
   <!-- <link href="{% static 'melody/css/logo.css'  %}" rel="stylesheet"> -->
   <!--   Core JS Files   -->
-  <script src="{% static 'melody/js/jquery-2.2.4.min.js' %}" type="text/javascript"></script>
-  <script src="{% static 'melody/js/bootstrap.min.js' %}" type="text/javascript"></script>
-  <script src="{% static 'melody/js/jquery.bootstrap.wizard.js' %} " type="text/javascript"></script>
+  <!-- <script src="{% static 'melody/js/jquery-2.2.4.min.js' %}" type="text/javascript"></script> -->
+  <!-- <script src="{% static 'melody/js/bootstrap.min.js' %}" type="text/javascript"></script> -->
+  <!-- <script src="{% static 'melody/js/jquery.bootstrap.wizard.js' %} " type="text/javascript"></script> -->
   <!--  Plugin for the Wizard -->
-  <script src="{% static 'melody/js/gsdk-bootstrap-wizard.js' %}"></script>
+  <!-- <script src="{% static 'melody/js/gsdk-bootstrap-wizard.js' %}"></script> -->
  <!--  More information about jquery.validate here: http://jqueryvalidation.org/  -->
-  <script src="{% static 'melody/js/jquery.validate.min.js' %}"></script>
+  <!-- <script src="{% static 'melody/js/jquery.validate.min.js' %}"></script> -->
   <!-- Scripts --> 
 <!-- /Jeffuu CSS and scripts -->
 <link rel="stylesheet" type="text/css" href="{% static 'melody/css/style.css' %}">
@@ -32,7 +32,7 @@
 <!-- css for datatable -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
-<link src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js">
+<!-- <link src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"> -->
 <script type="text/javascript" src="{% static 'melody/js/filterDate.js' %}"></script>
 <style>.dropdown-button{cursor: pointer; border: none;}.dropdown-container {display: none; background-color: #262626;}
         .dropdown-container:active{background-color: #262626;} .line{ height:2px;border-width:0;color:gray;background-color:gray;}
@@ -106,8 +106,8 @@
                             </div>
                     </a>
                     <div class="dropdown-container">
-                        <a href="#" class="bg-dark list-group-item list-group-item-action flex-column"><span class="ml-5 mr-2"><i class="material-icons"  style="display: inline-block; vertical-align: -5px;">&#xe7fb;</i></span>Customer</a>
-                        <a href="{% url 'electronickxz:editorUser_view' %}" class="bg-dark list-group-item list-group-item-action flex-column"><span class="ml-5 mr-2"><i style='font-size:24px' class='fab'>&#xf1be;</i></span>Product</a>
+                        <a href="{% url 'electronickxz:editorUser_view' %}" class="bg-dark list-group-item list-group-item-action flex-column"><span class="ml-5 mr-2"><i class="material-icons"  style="display: inline-block; vertical-align: -5px;">&#xe7fb;</i></span>Customer</a>
+                        <a href="{% url 'electronickxz:editorProduct_view' %}" class="bg-dark list-group-item list-group-item-action flex-column"><span class="ml-5 mr-2"><i style='font-size:24px' class='fab'>&#xf1be;</i></span>Product</a>
                     </div>
                     <a href="#" class="bg-dark list-group-item list-group-item-action flex-column" style="font-size: 1.1rem;">
                         <div class="d-flex w-100 justify-content-start align-items-center">
@@ -116,7 +116,7 @@
                     </a>
                 </ul>
                 <ul class="list-group" style="margin-top: 25%;">
-                    <a href="{% url 'electronickxz:login_view' %}" class="bg-dark list-group-item list-group-item-action flex-column" style="font-size: 1.1rem; border: none; color: #D1D1D1;">
+                    <a href="{% url 'electronickxz:logout_view' %}" class="bg-dark list-group-item list-group-item-action flex-column" style="font-size: 1.1rem; border: none; color: #D1D1D1;">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span class="ml-5 mr-2"><i class="material-icons">&#xe879;</i></span>Log Out
                         </div>
@@ -147,7 +147,7 @@
             </p>
             <p align="right">
                 <!-- <span style="display:inline-block; vertical-align: 5px; margin-right: 10px;"><button type="button" class="btn btn-Excel" onclick="exportToExcel('data-table')">Export to Excel</button></span> -->
-                <a type="button" class="btn-Add" href="{% url 'electronickxz:productRegister_view' %}"><i class="material-icons" style="font-size: 18px;">&#xe148;</i><span class="txt">Add Customer</span></a> 
+                <a type="button" class="btn-Add" href="{% url 'electronickxz:register_view' %}"><i class="material-icons" style="font-size: 18px;">&#xe148;</i><span class="txt">Add Customer</span></a> 
             </p>
                 <table class="table table-hover shadow" id="">
                     <thead>
@@ -155,150 +155,27 @@
                             <th scope="col">ID</th>
                             <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
-                            <th scope="col">Birthdate</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">Username</th>
                             <th scope="col">Type</th> 
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for customer in data %}
+                        {%if customer.type  != 'editor' and customer.type  != 'guest' %}
                         <tr>
                             <td >{{customer.id}}</td>
                             <td>{{customer.fname}}</td>
                             <td>{{customer.lname}}</td>
-                            <td>{{customer.birthday}}</td>
                             <td>{{customer.username}}</td>
                             <td>{{customer.type}}</td>
                             <td>
                                 
-                                <a data-toggle="modal" href="#" class="button" data-target="#modalView-{{customer.id}}"><i class="material-icons" style="color: black; font-size: 26px;">&#xe88f;</i></a>
-                                <a data-toggle="modal" href="#" class="button" onlick="deleteUserPls()"><i class="material-icons" style="color: red; font-size:28px;">&#xe92b;</i></a>
+                                <a data-toggle="modal" href="#" class="button" onclick="viewButton({{customer.id}})"><i class="material-icons" style="color: black; font-size: 26px;">&#xe88f;</i></a>
+                                <a data-toggle="modal" href="#" class="button" onclick="deleteButton({{customer.id}})"><i class="material-icons" style="color: red; font-size:28px;">&#xe92b;</i></a>
                             </td>
                         </tr>
-                       
-                        <!-- modal for View -->
-                        <div class="modal fade" id="modalView-{{customer.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header modal-view" style="background-color: #4D6AFF;">
-                                <h5 class="modal-title w-100 text-center" id="exampleModalLabel" style="color: white;">Customer Information</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true" style="color: white;">&times;</span>
-                                </button>
-                                </div>
-                                <form id="updateSong" method="POST" enctype="multipart/form-data">
-                                {% csrf_token%}
-                                <div class="modal-body">
-                                    <div style="margin-left: 2%; margin-right: 2%;">
-                                        <input type="text" name="customer-id" value = {{customer.id}} hidden>
-                                        <!-- image update -->
-                                <div class="card wizard-card" data-color="violet" id="wizardProfile">
-                                    <div class="picture-container">
-                                        <div class="picture" >
-                                            <img src="{{customer.profilepicture.url}}" class="picture-src" id="wizardPicturePreview" title=""/>
-                                            <input type="file" id="wizard-picture" name="profilepicture">
-                                        </div>
-                                      <h6>Choose Picture</h6>
-                                    </div>
-                                        <!-- /image update -->
-                                        <div class="row">
-                                            <div class="form-group col">
-                                                <label>Customer Name</label>
-                                                <input type="text" class="form-control" placeholder="Firstname" name="customer-fname" value="{{customer.firstname}}">
-                                            </div>
-                                            <div class="form-group col" style="margin-top: 32px;">
-                                                <input type="text" class="form-control" placeholder="Lastname" name="customer-lname" value="{{customer.lastname}}">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col">
-                                                <label>Birthday</label>
-                                                <input type="date" class="form-control" name="customer-bday" value="{{customer.birthday}}">
-                                            </div>
-                                            <div class="form-group col">
-                                                <label>Address</label>
-                                                <input type="text" class="form-control" placeholder="Address" name="customer-add" value="{{customer.address}}">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col">
-                                                <label>Email</label>
-                                                <input type="email" class="form-control" placeholder="Email" name="customer-email" value="{{customer.email}}">
-                                            </div>
-                                            <div class="form-group col">
-                                                <label>Contact no.</label>
-                                                <input type="number" class="form-control" placeholder="Contact no." name="customer-contact" value="{{customer.contact}}" onkeypress="if (this.value.length==11) {return false}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer justify-content-center">
-                                <button type="button" class="btn btn-outline-secondary shadow" data-dismiss="modal">Close</button>
-                                <button type="submit" id="btnUpdate" name="btnUpdate" class="btn btn-outline-primary shadow">Update</button>
-                                </div>
-                            </div>
-                            </form>
-                             </div>
-                            </div>
-                        </div>
-                        <!-- end of modal for View -->
-                        
-                        <!-- modal for Delete -->
-                        <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header" style="background-color: #E60000;">
-                                <h5 class="modal-title w-100 text-center" id="exampleModalLabel" style="color: white;">Do you want to delete this record?</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true" style="color: white;">&times;</span>
-                                </button>
-                                </div>
-                                <form id="updateSong" method="POST">
-                                {% csrf_token%}
-                                <div class="modal-body">
-                                    <div style="margin-left: 2%; margin-right: 2%;">
-                                        <input type="text" name="customer-id" value = {{customer.id}} hidden>
-                                        <div class="row">
-                                            <div class="form-group col">
-                                                <label>Customer Name</label><br>
-                                                <input type="text" class="display no-outline" value="{{customer.firstname}}" readonly>
-                                            </div>
-                                            <div class="form-group col" style="margin-top: 32px;">
-                                                <input type="text" class="display no-outline" value="{{customer.lastname}}" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col">
-                                                <label>Birthday</label><br>
-                                                <input type="text" class="display no-outline" value="{{customer.birthday}}" readonly>
-                                            </div>
-                                            <div class="form-group col">
-                                                <label>Address</label><br>
-                                                <input type="text" class="display no-outline" value="{{customer.address}}" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col">
-                                                <label>Email</label><br>
-                                                <input type="text" class="display no-outline" value="{{customer.email}}" readonly>
-                                            </div>
-                                            <div class="form-group col">
-                                                <label>Contact no.</label><br>
-                                                <input type="text" class="display no-outline" value="{{customer.contact}}" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer justify-content-center">
-                                    <button type="button" class="btn btn-outline-secondary shadow" data-dismiss="modal">Cancel</button>
-                                    <button type="submit" id="btnDelete" name="btnDelete" class="btn btn-outline-danger shadow">Delete</button>
-                                </div>
-                            </div>
-                            </form>
-                            </div>
-                        </div>
-                        <!-- end of modal for Delete -->
+                       {%endif%}
                         {% endfor %}
                     </tbody>
                 </table>  
@@ -316,14 +193,76 @@
             <!-- end of contents -->
         </div>
         <!-- end of row -->
+
+        <!-- modal for View -->
+        <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header modal-view" style="background-color: #4D6AFF;">
+                <h5 class="modal-title w-100 text-center" id="exampleModalLabel" style="color: white;">Customer Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color: white;">&times;</span>
+                </button>
+                </div>
+                <form id="updateSong" method="POST" enctype="multipart/form-data">
+                {% csrf_token%}
+                <div class="modal-body">
+                    <div style="margin-left: 2%; margin-right: 2%;">
+                        <input id="modalid" type="text" name="id" value="" hidden>
+                        <!-- image update -->
+                <div class="card wizard-card" data-color="violet" id="wizardProfile">
+                    <div class="picture-container">
+                        <div class="picture" >
+                            <img src="{{customer.profilepicture.url}}" class="picture-src" id="wizardPicturePreview" title=""/>
+                            <input type="file" id="wizard-picture" name="profilepicture">
+                        </div>
+                      <h6>Choose Picture</h6>
+                    </div>
+                        <!-- /image update -->
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>Customer Name</label>
+                                <input id="modalfname" type="text" class="form-control" placeholder="Firstname" name="fname" value="">
+                            </div>
+                            <div class="form-group col" style="margin-top: 32px;">
+                                <input id="modallname" type="text" class="form-control" placeholder="Lastname" name="lname" value="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>Username</label>
+                                <input id="modalusername" type="text" class="form-control" placeholder="Username" name="username" value="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>New Password</label>
+                                <input id="modalnewpassword" type="password" class="form-control" placeholder="password" name="username" value="" minlength="8">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-outline-secondary shadow" data-dismiss="modal">Close</button>
+                <button type="button" onclick="updateButton()" id="btnUpdate" name="btnUpdate" class="btn btn-outline-primary shadow">Update</button>
+                </div>
+            </div>
+            </form>
+             </div>
+            </div>
+        </div>
+        <!-- end of modal for View -->
+        
     </div>
 <!-- end of body -->
 {% block footerinclude %}
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    <script type="text/javascript" src="{% static 'melody/js/datatable.js' %}"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script> -->
+    <!-- <script type="text/javascript" src="{% static 'melody/js/datatable.js' %}"></script>    -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
         var dropdown = document.getElementsByClassName("dropdown-button");
         var i;
@@ -339,8 +278,76 @@
           });
         }
 
-        function deleteUserPls(){
-            alert("Delete user?");
+        function viewButton(id){
+            $('#viewModal').modal('show')
+            param = parseGETfromUrl(window.location.href)
+            $.ajax({
+                type: "get",
+                url: "http://127.0.0.1:8080/session/token",
+                dataType: "text",
+                success: function( token ) {
+                    $.ajax({
+                        type: "get",
+                        url: "http://127.0.0.1:8081/api/v1/users/"+id+"?token="+token,
+                        dataType: "json",
+                        success: function( result ) {
+                            console.log("Query result: " + JSON.stringify(result))
+                            document.querySelector("#modalid").value = result["id"];
+                            document.querySelector("#modalfname").value = result["fname"];
+                            document.querySelector("#modallname").value = result["lname"];
+                            document.querySelector("#modalusername").value = result["username"];
+                        }
+                    });
+                }
+            });
+        }
+
+        function deleteButton(id){
+            $.ajax({
+                type: "get",
+                url: "http://127.0.0.1:8080/session/token",
+                dataType: "text",
+                success: function( token ) {
+                $.ajax({
+                    type: "delete",
+                    url: "http://127.0.0.1:8081/api/v1/users/"+id+"?token="+token,
+                    dataType: "json",
+                    success: function( result ) {
+                        console.log("Deletion Success")                        
+                        location.reload();
+                    }
+                });
+            }});
+        }
+
+        function updateButton() {
+            id = document.querySelector("#modalid").value
+            fname = document.querySelector("#modalfname").value
+            lname = document.querySelector("#modallname").value
+            username = document.querySelector("#modalusername").value
+            password = document.querySelector("#modalnewpassword").value
+            data = {"id": parseInt(id), "fname": fname, "lname": lname, "username": username, "password":password, "type": "standard"}
+            console.log(JSON.stringify(data))
+            $.ajax({
+                type: "get",
+                url: "http://127.0.0.1:8080/session/token",
+                dataType: "text",
+                success: function( token ) {
+                    $.ajax({
+                        type: "put",
+                        url: "http://127.0.0.1:8081/api/v1/users/?token="+token,
+                        data: JSON.stringify(data),
+                        contentType: "application/json",
+                        success: function( result ) {
+                            console.log("Update Success")
+                            $('#viewModal').modal('hide')                   
+                            location.reload(); // very important to reload during after success and not during after function execution (the server gets confussed)
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) { console.log(jqXHR, textStatus, errorThrown)}
+                    });
+                }
+            });
+            // location.reload(); // very important to reload during after success and not during after function execution (the server gets confussed)
         }
 
         function parseGETfromUrl ( query = location.search.substring( 1 ) ) {
@@ -363,41 +370,6 @@
 
         }
 
-        function displayItem(id){
-            console.log($('#viewModal'))
-            $('#viewModal').modal('toggle')
-            param = parseGETfromUrl(window.location.href)
-            $.ajax({
-                type: "get",
-                url: "http://127.0.0.1:8080/session/token",
-                dataType: "text",
-                // async: true,
-                // dataType: "jsonp",
-                // crossDomain: true,
-                success: function( token ) {
-
-                    $.ajax({
-                        type: "get",
-                        url: "http://127.0.0.1:8081/api/v1/users/"+id+"?token="+token,
-                        dataType: "json",
-                        // async: true,
-                        // dataType: "jsonp",
-                        // crossDomain: true,
-                        success: function( result ) {
-                            console.log(result)
-                            // console.log("wad" +id)
-                            document.querySelector("#modalProductName").value = result["name"];
-                            document.querySelector("#modalProductPrice").value = result["price"];
-                            document.querySelector("#modalProductQuantity").value = result["quantity"];
-                            // $('#viewModal').modal('show')
-                        }
-                    });
-                }
-            });
-
-            console.log("mawaaaaaa")
-
-        }
     </script>
     <!-- <script>
         var goNext = document.getElementById("nextBtn");
